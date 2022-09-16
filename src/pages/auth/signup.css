@@ -1,0 +1,157 @@
+body {
+  overflow: auto !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.login input {
+  border: 1px solid #8692a6 !important;
+  border-radius: 10px;
+}
+
+.login > input[type="text"]:focus,
+.login > input[type="password"]:focus,
+.login > input[type="number"]:focus,
+.login > input[type="email"]:focus,
+.login > input[type="checkbox"]:checked,
+.login.uneditable-input:focus {
+  color: #696f79;
+  border-color: rgba(239, 200, 26, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(239, 200, 26, 0.1) inset,
+    0 0 6px rgba(239, 200, 26, 0.9) !important;
+  outline: 0 none;
+}
+
+.login > input[type="checkbox"]:focus {
+  box-shadow: none !important;
+  outline: 0 none;
+}
+
+.login > input[type="checkbox"]:checked {
+  background: #efc81a;
+}
+
+.login > input::placeholder {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #8692a6 !important;
+}
+
+.login.form-control > input {
+  height: 2.825rem !important;
+  background: #ffffff !important;
+}
+
+.login.form-control > input:active {
+  background: #ffffff;
+}
+
+.login > input:-webkit-autofill,
+.login > input:-webkit-autofill:hover,
+.login > input:-webkit-autofill:focus,
+.login > input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+label.inputLabelText {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #696f79 !important;
+}
+
+.btn-warning {
+  background-color: #efc81a !important;
+  height: 2.825rem;
+}
+
+.btn-warning:hover {
+  background-color: #f4d032 !important;
+  border-color: rgba(239, 200, 26, 0.8) !important;
+  box-shadow: 0 4px 4px rgba(239, 200, 26, 0.1) inset,
+    0 0 6px rgba(239, 200, 26, 0.9) !important;
+  outline: 0 none;
+}
+
+.title-text,
+.login-text {
+  color: #efc81a;
+}
+
+.subtitle-text,
+.have-an-account-text,
+.terms-and-conditions-text {
+  color: #8692a6;
+}
+
+.title-text,
+.subtitle-text,
+.login-text,
+.have-an-account-text,
+.terms-and-conditions-text {
+  font-family: "Inter", sans-serif;
+}
+
+.title-text {
+  font-weight: 700;
+}
+
+.subtitle-text {
+  font-weight: 400;
+}
+
+.terms-and-conditions-text {
+  margin-top: 0.1rem !important;
+  font-size: 0.8rem;
+}
+
+.login-text,
+.terms-and-conditions-text {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.column {
+  width: 100%;
+  height: 100%;
+}
+
+div.backdrop {
+  height: 150vh !important;
+  width: 100% !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(239, 200, 26, 0.375),
+      rgba(239, 200, 26, 0.6)
+    ),
+    url("../../assets/auth/login/backdrop.jpg");
+}
+
+@media screen and (max-width: 1500px) {
+  form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  form {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  form {
+    width: 70%;
+  }
+}
