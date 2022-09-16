@@ -29,7 +29,7 @@ function Signup() {
               <input
                 type="text"
                 name="name"
-                className="form-control justify-content-center my-2 mb-3"
+                className="login form-control my-2 mb-3"
                 placeholder="Name"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Name is required")
@@ -42,7 +42,7 @@ function Signup() {
               <input
                 type="text"
                 name="email"
-                className="form-control justify-content-center my-2 mb-3"
+                className="login form-control my-2 mb-3"
                 placeholder="Enter email address"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Email is required")
@@ -55,7 +55,7 @@ function Signup() {
               <input
                 type="number"
                 name="phoneNumber"
-                className="form-control justify-content-center my-2 mb-3"
+                className="login form-control my-2 mb-3"
                 placeholder="08xxxxxxxxxx"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Phone number is required")
@@ -68,7 +68,7 @@ function Signup() {
               <input
                 type="password"
                 name="password"
-                className="form-control my-2 mb-3"
+                className="login form-control my-2 mb-3"
                 placeholder="Create new password"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Password is required")
@@ -81,7 +81,7 @@ function Signup() {
               <input
                 type="password"
                 name="password"
-                className="form-control my-2"
+                className="login form-control my-2"
                 placeholder="Confirm new password"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Confirm password is required")
