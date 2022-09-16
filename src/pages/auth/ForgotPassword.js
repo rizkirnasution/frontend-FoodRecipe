@@ -16,7 +16,7 @@ function ForgotPassword() {
         </div>
         <div class="container">
           <div className="column d-flex align-items-center justify-content-center my-5 py-4">
-            <form className="text-center">
+            <form className="forgot-password text-center">
               <h1 className="text-center title-text">
                 <b>Forgot Password?</b>
               </h1>
@@ -30,7 +30,7 @@ function ForgotPassword() {
               <input
                 type="email"
                 name="email"
-                className="form-control justify-content-center my-3 mb-4"
+                className=" forgot-password form-control justify-content-center my-3 mb-4"
                 placeholder="examplexxx@mail.com"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Email is required")
@@ -40,7 +40,7 @@ function ForgotPassword() {
 
               <button
                 type="submit"
-                className="btn btn-warning text-white w-100 "
+                className="btn btn-warning submit text-white w-100 "
               >
                 Send E-mail
               </button>
