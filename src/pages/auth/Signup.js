@@ -16,7 +16,7 @@ function Signup() {
         </div>
         <div class="container">
           <div className="column d-flex align-items-center justify-content-center my-5 py-4">
-            <form className="text-center">
+            <form className="signup text-center">
               <h1 className="text-center title-text">
                 <b>Let's Get Started!</b>
               </h1>
@@ -29,7 +29,7 @@ function Signup() {
               <input
                 type="text"
                 name="name"
-                className="login form-control my-2 mb-3"
+                className="signup form-control my-2 mb-3"
                 placeholder="Name"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Name is required")
@@ -42,7 +42,7 @@ function Signup() {
               <input
                 type="text"
                 name="email"
-                className="login form-control my-2 mb-3"
+                className="signup form-control my-2 mb-3"
                 placeholder="Enter email address"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Email is required")
@@ -55,7 +55,7 @@ function Signup() {
               <input
                 type="number"
                 name="phoneNumber"
-                className="login form-control my-2 mb-3"
+                className="signup form-control my-2 mb-3"
                 placeholder="08xxxxxxxxxx"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Phone number is required")
@@ -68,7 +68,7 @@ function Signup() {
               <input
                 type="password"
                 name="password"
-                className="login form-control my-2 mb-3"
+                className="signup form-control my-2 mb-3"
                 placeholder="Create new password"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Password is required")
@@ -81,7 +81,7 @@ function Signup() {
               <input
                 type="password"
                 name="password"
-                className="login form-control my-2"
+                className="signup form-control my-2"
                 placeholder="Confirm new password"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Confirm password is required")
@@ -104,7 +104,7 @@ function Signup() {
               </div>
               <button
                 type="submit"
-                className="btn btn-warning text-white w-100 mt-3"
+                className="btn btn-warning submit text-white w-100 mt-3"
               >
                 Sign Up
               </button>
