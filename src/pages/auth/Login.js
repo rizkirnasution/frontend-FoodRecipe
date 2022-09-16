@@ -16,7 +16,7 @@ function Login() {
         </div>
         <div class="container">
           <div className="column d-flex align-items-center justify-content-center my-5 py-4">
-            <form className="text-center">
+            <form className="login text-center">
               <h1 className="text-center title-text">
                 <b>Welcome</b>
               </h1>
@@ -29,7 +29,7 @@ function Login() {
               <input
                 type="email"
                 name="email"
-                className="form-control justify-content-center my-2 mb-4"
+                className="login form-control my-2 mb-4"
                 placeholder="email"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Email is required")
@@ -42,7 +42,7 @@ function Login() {
               <input
                 type="password"
                 name="password"
-                className="form-control my-2"
+                className="login form-control my-2"
                 placeholder="Password"
                 onInvalid={(e) =>
                   e.target.setCustomValidity("Password is required")
@@ -65,7 +65,7 @@ function Login() {
               </div>
               <button
                 type="submit"
-                className="btn btn-warning text-white w-100 mt-3"
+                className="btn btn-warning submit text-white w-100 mt-3"
               >
                 Login
               </button>
@@ -77,7 +77,7 @@ function Login() {
               <br />
               <label className="dont-have-an-account-text align-self-center">
                 Don't have an Account?
-                <Link className="signup-text ms-1" to="/register">
+                <Link className="signup-text ms-1" to="/signup">
                   Sign Up Here
                 </Link>
               </label>
