@@ -2,19 +2,29 @@ body {
   overflow: auto !important;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@font-face {
+  font-family: "Airbnb";
+  src: url("../../assets/fonts/airbnb.woff2");
+  font-display: swap;
+}
 
-.login input {
+@font-face {
+  font-family: "Inter";
+  src: url("../../assets/fonts/inter.woff2");
+  font-display: swap;
+}
+
+.signup > input {
   border: 1px solid #8692a6 !important;
   border-radius: 10px;
 }
 
-.login > input[type="text"]:focus,
-.login > input[type="password"]:focus,
-.login > input[type="number"]:focus,
-.login > input[type="email"]:focus,
-.login > input[type="checkbox"]:checked,
-.login.uneditable-input:focus {
+.signup > input[type="text"]:focus,
+.signup > input[type="password"]:focus,
+.signup > input[type="number"]:focus,
+.signup > input[type="email"]:focus,
+.signup > input[type="checkbox"]:checked,
+.signup.uneditable-input:focus {
   color: #696f79;
   border-color: rgba(239, 200, 26, 0.8) !important;
   box-shadow: 0 1px 1px rgba(239, 200, 26, 0.1) inset,
@@ -22,17 +32,17 @@ body {
   outline: 0 none;
 }
 
-.login > input[type="checkbox"]:focus {
+.signup > input[type="checkbox"]:focus {
   box-shadow: none !important;
   outline: 0 none;
 }
 
-.login > input[type="checkbox"]:checked {
+.signup > input[type="checkbox"]:checked {
   background: #efc81a;
 }
 
-.login > input::placeholder {
-  font-family: "Inter";
+.signup > input::placeholder {
+  font-family: "Airbnb";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -41,24 +51,24 @@ body {
   color: #8692a6 !important;
 }
 
-.login.form-control > input {
+.signup.form-control > input {
   height: 2.825rem !important;
   background: #ffffff !important;
 }
 
-.login.form-control > input:active {
+.signup.form-control > input:active {
   background: #ffffff;
 }
 
-.login > input:-webkit-autofill,
-.login > input:-webkit-autofill:hover,
-.login > input:-webkit-autofill:focus,
-.login > input:-webkit-autofill:active {
+.signup > input:-webkit-autofill,
+.signup > input:-webkit-autofill:hover,
+.signup > input:-webkit-autofill:focus,
+.signup > input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 label.inputLabelText {
-  font-family: "Inter";
+  font-family: "Airbnb";
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -68,12 +78,12 @@ label.inputLabelText {
   color: #696f79 !important;
 }
 
-.btn-warning {
+.btn-warning.submit {
   background-color: #efc81a !important;
   height: 2.825rem;
 }
 
-.btn-warning:hover {
+.btn-warning.submit.submit:hover {
   background-color: #f4d032 !important;
   border-color: rgba(239, 200, 26, 0.8) !important;
   box-shadow: 0 4px 4px rgba(239, 200, 26, 0.1) inset,
@@ -84,6 +94,10 @@ label.inputLabelText {
 .title-text,
 .login-text {
   color: #efc81a;
+}
+
+.login-text:hover {
+  color: #f4d032;
 }
 
 .subtitle-text,
@@ -97,7 +111,7 @@ label.inputLabelText {
 .login-text,
 .have-an-account-text,
 .terms-and-conditions-text {
-  font-family: "Inter", sans-serif;
+  font-family: "Airbnb", sans-serif;
 }
 
 .title-text {
@@ -139,19 +153,44 @@ div.backdrop {
 }
 
 @media screen and (max-width: 1500px) {
-  form {
+  .signup > form {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 1200px) {
-  form {
+  .signup > form {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 800px) {
-  form {
+  .signup > form {
     width: 70%;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #efc81a;
+  border-radius: 15px;
+  opacity: 0.2 !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f4d032 !important;
+  border-color: rgba(239, 200, 26, 0.8) !important;
+  box-shadow: 0 4px 4px rgba(239, 200, 26, 0.1) inset,
+    0 0 6px rgba(239, 200, 26, 0.9) !important;
 }

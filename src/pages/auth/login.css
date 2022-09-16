@@ -1,30 +1,29 @@
 body {
-  overflow: auto;
+  overflow: hidden;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@font-face {
+  font-family: "Airbnb";
+  src: url("../../assets/fonts/airbnb.woff2");
+  font-display: swap;
+}
 
-input {
+@font-face {
+  font-family: "Inter";
+  src: url("../../assets/fonts/inter.woff2");
+  font-display: swap;
+}
+
+.login > input {
   border: 1px solid #8692a6 !important;
   border-radius: 10px;
 }
 
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-input[type="checkbox"]:checked,
+.login > input[type="text"]:focus,
+.login > input[type="password"]:focus,
+.login > input[type="number"]:focus,
+.login > input[type="email"]:focus,
+.login > input[type="checkbox"]:checked,
 .uneditable-input:focus {
   color: #696f79;
   border-color: rgba(239, 200, 26, 0.8) !important;
@@ -33,16 +32,16 @@ input[type="checkbox"]:checked,
   outline: 0 none;
 }
 
-input[type="checkbox"]:focus {
+.login > input[type="checkbox"]:focus {
   box-shadow: none !important;
   outline: 0 none;
 }
 
-input[type="checkbox"]:checked {
+.login > input[type="checkbox"]:checked {
   background: #efc81a;
 }
 
-input::placeholder {
+.login > input::placeholder {
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -52,20 +51,20 @@ input::placeholder {
   color: #8692a6 !important;
 }
 
-input.form-control {
+.login.form-control > input {
   width: 100%;
   height: 2.825rem !important;
   background: #ffffff !important;
 }
 
-input.form-control:active {
+.login.form-control > input:active {
   background: #ffffff;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+.login > input:-webkit-autofill,
+.login > input:-webkit-autofill:hover,
+.login > input:-webkit-autofill:focus,
+.login > input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
@@ -80,12 +79,12 @@ label.inputLabelText {
   color: #696f79 !important;
 }
 
-.btn-warning {
+.btn-warning.submit {
   background-color: #efc81a !important;
   height: 2.625rem;
 }
 
-.btn-warning:hover {
+.btn-warning.submit:hover {
   background-color: #f4d032 !important;
   border-color: rgba(239, 200, 26, 0.8) !important;
   box-shadow: 0 4px 4px rgba(239, 200, 26, 0.1) inset,
@@ -96,6 +95,10 @@ label.inputLabelText {
 .title-text,
 .signup-text {
   color: #efc81a;
+}
+
+.signup-text:hover {
+  color: #f4d032;
 }
 
 .subtitle-text,
@@ -142,13 +145,7 @@ label.inputLabelText {
   height: 100%;
 }
 
-hr {
-  width: 100%;
-  height: 1px;
-  color: #e2d1d1 !important;
-}
-
-form {
+.login > form {
   justify-content: center;
   width: 50%;
 }
@@ -165,4 +162,47 @@ div.backdrop {
       rgba(239, 200, 26, 0.6)
     ),
     url("../../assets/auth/login/backdrop.jpg");
+}
+
+@media screen and (max-width: 1500px) {
+  .login > form {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .login > form {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .login > form {
+    width: 70%;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #efc81a;
+  border-radius: 15px;
+  opacity: 0.2 !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f4d032 !important;
+  border-color: rgba(239, 200, 26, 0.8) !important;
+  box-shadow: 0 4px 4px rgba(239, 200, 26, 0.1) inset,
+    0 0 6px rgba(239, 200, 26, 0.9) !important;
 }
