@@ -46,9 +46,9 @@ const Profile =()=>{
 
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Create Product</Modal.Title>
+                <Modal.Title>Update User</Modal.Title>
             </Modal.Header>
-            <form >
+            <form>
                 <Modal.Body>
                     <input
                         className="form-control mt-3"
