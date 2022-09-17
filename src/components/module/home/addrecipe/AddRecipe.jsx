@@ -8,18 +8,7 @@ function AddRecipe(){
     return(
         <>
         <Navbar/>
-        <div className="add mb-5 ff-airbnb">
-        {/* add */}
-        {/* <section className="add ff-airbnb"> */}
-          {/* {errors.length > 0 && (
-            <div className="alert alert-danger mx-0">
-              <ul className="m-0">
-                {errors.map((error, index) => (
-                  <li key={index}>{error.msg}</li>
-                ))}
-              </ul>
-            </div>
-          )} */}
+        <div className="add col-8 col-sm-8 col-md-8 col-lg-8 mb-5 ff-airbnb">
           <form>
             <div className="mb-3">
               <label
@@ -36,9 +25,9 @@ function AddRecipe(){
                 className="form-control form-control-sm p-3"
                 id="title"
                 placeholder="Title"
-                // onChange={inputChangeHandler}
+           
                 required
-                // value={form.title}
+          
               />
             </div>
             <div className="mb-3">
@@ -56,9 +45,9 @@ function AddRecipe(){
                 id="ingredients"
                 rows="10"
                 placeholder="Ingredients"
-                // onChange={inputChangeHandler}
+             
                 required
-                // defaultValue={form.ingredients}
+           
               />
             </div>
             <div className="mb-3">
@@ -70,7 +59,7 @@ function AddRecipe(){
                 className="form-control form-control-sm p-3"
                 id="photo"
                 placeholder="Photo"
-                // onChange={photoChangeHandler}
+           
               />
             </div>
             <div className="mb-3">
@@ -82,7 +71,7 @@ function AddRecipe(){
                 className="form-control form-control-sm p-3"
                 id="video"
                 placeholder="Video"
-                // onChange={videoChangeHandler}
+           
               />
             </div>
             <div className="d-flex justify-content-center">
@@ -97,7 +86,7 @@ function AddRecipe(){
             </div>
            
           </form>
-        {/* </section> */}
+ 
       </div>
       <Footer/>
         </>
