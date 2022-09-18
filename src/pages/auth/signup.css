@@ -10,7 +10,7 @@ body {
 
 @font-face {
   font-family: "Inter";
-  src: url("../../assets/fonts/inter.woff2");
+  /* src: url("../../assets/fonts/inter.woff2"); */
   font-display: swap;
 }
 

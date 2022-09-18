@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "../../components/base/Home/Home";
-import Detail from "../../components/module/Detail/DetailResep";
-import DetailVideo from "../../components/module/Detail/DetailVideo";
-
-const Router = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace="true" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/Detail" element={<Detail />} />
-        <Route path="/DetailVideo" element={<DetailVideo />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
-
-=======
 import { useSelector } from "react-redux";
 // import RequireAuth from "../../components/base/RequireAuth";
 import React from "react";
@@ -27,6 +7,7 @@ import Home from "../../components/module/home/Home";
 import Profile from "../../components/module/profile/Profile";
 import DetailVideoRecipe from "../../components/module/detailvideorecipe/index";
 import AddRecipe from "../../components/module/home/addrecipe/AddRecipe";
+import DetailRecipe from "../../components/module/Detail/DetailResep";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
@@ -53,10 +34,10 @@ const Router = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
         <Route path="/addRecipe" element={<AddRecipe />} />
+        <Route path="/detailrecipe" element={<DetailRecipe />} />
       </Routes>
     </BrowserRouter>
   );
 };
 
->>>>>>> develop
 export default Router;
