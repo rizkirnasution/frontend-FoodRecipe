@@ -1,0 +1,151 @@
+@font-face /*perintah untuk memanggil font eksternal*/
+{
+    font-family: 'airbnb'; /*memberikan nama bebas untuk font*/
+    src: url('../../../assets/fonts/AirbnbCereal_W_Bd.otf');/*memanggil file font eksternalnya di folder nexa*/
+}
+ @font-face /*perintah untuk memanggil font eksternal*/
+{
+    font-family: 'airbnb_bk'; /*memberikan nama bebas untuk font*/
+    src: url('../../../assets/fonts/AirbnbCereal_W_Bk.otf');/*memanggil file font eksternalnya di folder nexa*/
+}
+ @font-face /*perintah untuk memanggil font eksternal*/
+{
+    font-family: 'airbnb_blk'; /*memberikan nama bebas untuk font*/
+    src: url('../../../assets//fonts/AirbnbCereal_W_Blk.otf');/*memanggil file font eksternalnya di folder nexa*/
+}
+ @font-face /*perintah untuk memanggil font eksternal*/
+{
+    font-family: 'airbnb_lt'; /*memberikan nama bebas untuk font*/
+    src: url('../../../assets/fonts/AirbnbCereal_W_Lt.otf');/*memanggil file font eksternalnya di folder nexa*/
+}
+ @font-face /*perintah untuk memanggil font eksternal*/
+{
+    font-family: 'airbnb_md'; /*memberikan nama bebas untuk font*/
+    src: url('../../../assets//fonts/AirbnbCereal_W_Md.otf');/*memanggil file font eksternalnya di folder nexa*/
+}
+
+.imageCover {
+display: block; 
+margin: 50px auto; 
+text-align: center; 
+object-fit:none;  
+border-radius: 10px;
+margin-top: 2px;
+
+}
+
+/* .img{
+  width: 65% !important;
+  height: 65% !important;
+} */
+
+.content {
+  width: 100%;
+}
+.logo {
+  float: right;
+  margin-top: 440px;
+}
+.tangan {
+  border-radius: 15px;
+  border: 1px solid #efc81a;
+  background-color: #f6f5f4;
+}
+.simpan {
+  border-radius: 15px;
+  border: 1px solid #f6f5f4;
+  background-color: #efc81a;
+}
+.captionLogo {
+  position: absolute;
+  bottom: -10px;
+  right: 420px;
+}
+.videoStep {
+  font-size: 25px;
+  color: #222222;
+}
+.videoPlay {
+  margin-top: 20px ;
+}
+.titleIng {
+  font-size: 25px;
+}
+.ingrediens {
+  font-family: airbnb_lt;
+  font-size: 20px;
+}
+.play {
+  width: 150px;
+  margin-top: 5px;
+}
+.coment {
+  height: 200px !important;
+  background-color: #f6f5f4;
+}
+.coments {
+  font-size: 30px;
+}
+.imgComent {
+  margin-top: 18px;
+}
+.comen {
+  margin-top: 60px;
+}
+.send {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  width: 150px;
+  color: aliceblue;
+}
+.product {
+  margin-top: 50px;
+  text-align: center;
+}
+.product a {
+  display: inline-block;
+  text-decoration: none !important;
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  .comen {
+    margin-top: 5px;
+  }
+  .imageCover {
+    object-fit: none;
+    width: 330px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: relative;
+  }
+  .captionLogo {
+    position: absolute;
+    bottom: 350px;
+    right: 110px;
+
+  }
+  .simpan{
+        width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    z-index: -1;
+  }
+  .tangan{
+        width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+  .icon{
+       width: 10px !important;
+    height: 15px !important;
+    z-index: 100;
+    position: absolute;
+    bottom: 0px;
+    left: 8px;
+  }
+}

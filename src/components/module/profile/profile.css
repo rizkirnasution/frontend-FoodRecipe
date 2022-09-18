@@ -27,4 +27,6 @@
     height: 120px;
     object-fit: cover;
   }
-  
+  .btn > .btn-update{
+    background-color: #EFC81A !important;
+  }
