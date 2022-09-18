@@ -5,13 +5,14 @@ import { ActionTypes } from "../constants/action-types";
 export const loginUser = (dataForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: ActionTypes.USER_LOGIN_PENDING });
+
     const result = await axios.post(
-      `${process.env.REACT_APP_API_BACKEND}/users/login`,
+      `${process.env.REACT_APP_API_BACKEND}/auth/login`,
       dataForm
     );
 
     const payloads = result.data.data;
-    const { email, role, token, refreshToken } = payloads;
+    const { email, role, accessToken } = payloads;
     const payload = {
       email: email,
       role: role,
@@ -19,8 +20,7 @@ export const loginUser = (dataForm, navigate) => async (dispatch) => {
     console.log(payload);
 
     localStorage.setItem("payloads", payloads);
-    localStorage.setItem("token", token);
-    localStorage.setItem("refreshToken", refreshToken);
+    localStorage.setItem("accessToken", accessToken);
     dispatch({
       type: ActionTypes.USER_LOGIN_SUCCESS,
       payload: payloads,
@@ -36,7 +36,7 @@ export const loginUser = (dataForm, navigate) => async (dispatch) => {
     swal.fire({
       icon: "error",
       title: "Oops... :((",
-      text: error.response.data.message,
+      text: error.response,
     });
     console.log(error);
   }
@@ -46,13 +46,13 @@ export const signUp = (dataForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: ActionTypes.USER_REGISTER_PENDING });
     const result = await axios.post(
-      `${process.env.REACT_APP_API_BACKEND}/users/register`,
+      `${process.env.REACT_APP_API_BACKEND}/auth/register`,
       dataForm
     );
     const user = result.data.data;
 
-    localStorage.setItem("token", user.token);
-    localStorage.setItem("refreshToken", user.refreshToken);
+    localStorage.setItem("accessToken", user.accessToken);
+    localStorage.setItem("refreshToken", user.token);
     dispatch({ type: ActionTypes.USER_REGISTER_SUCCESS, payload: user });
 
     swal.fire({
@@ -80,24 +80,5 @@ export const signOut = () => {
     dispatch({
       type: ActionTypes.SIGN_OUT,
     });
-  };
-};
-
-export const updateUser = (users) => {
-  return {
-    type: ActionTypes.UPDATE_USER,
-    payload: users,
-  };
-};
-
-export const loadUser = () => {
-  return (dispatch, getState) => {
-    const token = getState().auth.token;
-    if (token) {
-      dispatch({
-        type: ActionTypes.USER_LOADED,
-        token,
-      });
-    } else return null;
   };
 };

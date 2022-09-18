@@ -1,8 +1,22 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+// import RequireAuth from "../../components/base/RequireAuth";
+import React from "react";
+// import Swal from "sweetalert2";
 import Home from "../../pages/home";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
+
+// const Role = ({ children }) => {
+//   const { user } = useSelector((state) => state.auth);
+
+//   if (user.role !== "seller") {
+//     Swal.fire("Are you a Seller?", "Please be a Seller first!", "question");
+//     return <Navigate to="/home" replace />;
+//   }
+//   return children;
+// };
 
 const Router = () => {
   return (
