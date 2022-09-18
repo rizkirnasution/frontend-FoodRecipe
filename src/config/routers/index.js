@@ -6,6 +6,7 @@ import AddRecipe from "../../components/module/home/addrecipe/AddRecipe"
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
+import Searching from "../../components/module/home/pagination/Searching"
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
         <Route path="/" element={<Navigate to="/home" replace="true" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/search" element={<Searching/>}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/profile" element={<Profile/>} />
