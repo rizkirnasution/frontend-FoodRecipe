@@ -35,7 +35,7 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case ActionTypes.SIGN_OUT:
-      localStorage.removeItem("token");
+      localStorage.removeItem("accessToken");
       return {
         id: null,
         name: null,
