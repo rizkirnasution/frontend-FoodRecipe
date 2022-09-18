@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Airbnb";
+    src: url(../../../assets//fonts/airbnb.woff2);
+    font-display: swap;
+  }
+  .ff-airbnb {
+    font-family: "Airbnb", sans-serif;
+  }
