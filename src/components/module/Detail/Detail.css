@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Airbnb";
+  src: url("../../../assets/detailRecipe/AirbnbCereal_W_Bd.otf");
+  font-display: swap;
+}
+.small-middle-container {
+  margin: auto;
+  width: 70%;
+}
+
+.picture {
+  max-width: 600px;
+  max-height: 450px;
+}
+
+.btn-warning {
+  width: 250px;
+  height: 45px;
+}
+
+.commentPic {
+  width: 64px;
+  height: 64px;
+}
