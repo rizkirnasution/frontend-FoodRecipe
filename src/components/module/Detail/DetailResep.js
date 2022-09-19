@@ -3,34 +3,23 @@ import pic from "../../../assets/detailRecipe/photo.svg";
 import play from "../../../assets/detailRecipe/play.svg";
 import "./Detail.css";
 import comment from "../../../assets/detailRecipe/comment.png";
-import NavbarDetail from "./navbar/Navbar";
-import Footer from "../footer/Footer";
 import Navbar from "../home/navbar/Navbar";
-import Bookmark from "../../../assets/detailRecipe/bookmark.png";
-import Like from "../../../assets/detailRecipe/like.png";
+import ProfileNavbarTop from "../../base/navbar/NavbarProfileTop";
+import FooterAfter from "../footer/FooterAfter";
+import Footer from "../footer/Footer";
 
 function Detail() {
   return (
     <>
-      <NavbarDetail />
+      <Navbar />
       <div className="small-middle-container">
-        <div className="content my-3">
+        <div className="content">
           <h1 className="text-center">Loream Sandwich</h1>
-          <div className="d-flex align-items-center justify-content-center my-3 img-container ">
+          <div className="d-flex align-items-center justify-content-center my-3">
             <img src={pic} className="picture img-fluid" />
-            <a href="#">
-              <div id="short-des">
-                <img src={Like} className="like" />
-              </div>
-            </a>
-            <a href="#">
-              <div id="short-des2">
-                <img src={Bookmark} />
-              </div>
-            </a>
           </div>
         </div>
-        <div className="my-4">
+        <div>
           <h3>Ingredients</h3>
           <ul>
             <li>2 Eggs</li>
@@ -42,25 +31,20 @@ function Detail() {
             <li>Crisps, To Serve</li>
           </ul>
         </div>
-        <div className="my-4">
+        <div>
           <h3>Video Step</h3>
           <div>
-            <button className="btn btn-warning mb-3">
+            <button className="btn btn-warning mb-2">
               <img src={play} />
             </button>
           </div>
           <div>
-            <button className="btn btn-warning mb-3">
+            <button className="btn btn-warning mb-2">
               <img src={play} />
             </button>
           </div>
           <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
+            <button className="btn btn-warning mb-2">
               <img src={play} />
             </button>
           </div>
