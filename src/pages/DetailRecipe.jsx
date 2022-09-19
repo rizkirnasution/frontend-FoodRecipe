@@ -16,18 +16,18 @@ function Detail() {
       <div className="small-middle-container">
         <div className="content my-3">
           <h1 className="text-center">Loream Sandwich</h1>
-          <div className="d-flex align-items-center justify-content-center my-3 img-container ">
-            <img src={pic} className="picture img-fluid" />
-            <a href="#">
-              <div id="short-des">
-                <img src={Like} className="like" />
-              </div>
-            </a>
-            <a href="#">
-              <div id="short-des2">
-                <img src={Bookmark} />
-              </div>
-            </a>
+          <div class="gallerypic">
+            <img src={pic} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
+            <span class="bookmark">
+              <a href="#">
+                <img src={Like} alt="bookmark" className="icon" />
+              </a>
+            </span>
+            <span class="like">
+              <a href="#">
+                <img src={Bookmark} alt="like" className="icon" />
+              </a>
+            </span>
           </div>
         </div>
         <div className="my-4">
