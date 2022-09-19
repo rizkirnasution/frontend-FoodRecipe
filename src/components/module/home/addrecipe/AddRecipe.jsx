@@ -2,14 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './addrecipe.css'
 import Navbar from "../../../base/navbar/NavbarProfileTop"
+import NavbarAfterLogin from "../../../base/navbarafterlogin/NavbarAfterLogin"
 import Footer from "../../../module/footer/Footer"
 
 function AddRecipe(){
     return(
         <>
-        <Navbar/>
-        <div className="add col-8 col-sm-8 col-md-8 col-lg-8 mb-5 ff-airbnb">
-          <form>
+        <NavbarAfterLogin/>
+        <div className="add col-8 col-sm-8 col-md-8 col-lg-8 ff-airbnb mb-5">
+          <form >
             <div className="mb-3">
               <label
                 htmlFor="title"
@@ -32,19 +33,19 @@ function AddRecipe(){
             </div>
             <div className="mb-3">
               <label
-                htmlFor="ingredients"
+                htmlFor="ingredient"
                 className="form-label me-2"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Required"
               >
-                Ingredients
+                Ingredient
               </label>
               <textarea
                 className="form-control"
                 id="ingredients"
                 rows="10"
-                placeholder="Ingredients"
+                placeholder="Ingredient"
              
                 required
            

@@ -1,5 +1,5 @@
 /* video */
-.video {
+/* .video {
     margin-top: 50px;
   }
   
@@ -45,4 +45,70 @@
       height: 200px;
       object-fit: cover;
     }
+  } */
+
+  @font-face /*perintah untuk memanggil font eksternal*/
+  {
+      font-family: 'airbnb'; /*memberikan nama bebas untuk font*/
+      src: url('../../../assets/fonts/AirbnbCereal_W_Bd.otf');/*memanggil file font eksternalnya di folder nexa*/
+  }
+   @font-face /*perintah untuk memanggil font eksternal*/
+  {
+      font-family: 'airbnb_bk'; /*memberikan nama bebas untuk font*/
+      src: url('../../../assets/fonts/AirbnbCereal_W_Bk.otf');/*memanggil file font eksternalnya di folder nexa*/
+  }
+   @font-face /*perintah untuk memanggil font eksternal*/
+  {
+      font-family: 'airbnb_blk'; /*memberikan nama bebas untuk font*/
+      src: url('../../../assets//fonts/AirbnbCereal_W_Blk.otf');/*memanggil file font eksternalnya di folder nexa*/
+  }
+   @font-face /*perintah untuk memanggil font eksternal*/
+  {
+      font-family: 'airbnb_lt'; /*memberikan nama bebas untuk font*/
+      src: url('../../../assets/fonts/AirbnbCereal_W_Lt.otf');/*memanggil file font eksternalnya di folder nexa*/
+  }
+   @font-face /*perintah untuk memanggil font eksternal*/
+  {
+      font-family: 'airbnb_md'; /*memberikan nama bebas untuk font*/
+      src: url('../../../assets//fonts/AirbnbCereal_W_Md.otf');/*memanggil file font eksternalnya di folder nexa*/
+  }
+  
+  .imageStep img{
+   position: absolute;
+      margin-left: 0;
+    z-index: -1;
+  }
+  .caption{
+      margin-top: 130px;
+      font-weight: 500;
+      font-size: 15px;
+      font-family: 'airbnb_md';
+  }
+  .subCaption{
+      margin-top: -10px;
+      font-size: 10px;
+       font-family: 'airbnb_lt';
+  }
+  .titleVideo{
+      font-size: 30px;
+  }
+  .next{
+      font-size: 30px;
+      color: #222222;
+  }
+  .sugestion{
+      margin-top: 40px ;
+  }
+  
+  @media (max-width:576px) {
+  /* detail */
+  .videos{
+      width: 330px;
+  }
+  .titleVideo{
+      font-size: 20px;
+  }
+  .caption{
+      margin-top: 160px;
+  }
   }
