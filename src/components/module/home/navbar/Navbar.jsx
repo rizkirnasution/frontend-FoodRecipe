@@ -8,7 +8,7 @@ function Navbar() {
     <div className="container">
         <nav className="navbar  navbar-expand-lg bg-transaparent sticky-top">
         <div className="container">
-        <a class="navbar-brand" href="#">Food Recipe</a>
+        <a class="navbar-brand" href="/">Food Recipe</a>
         <button
             className="navbar-toggler"
             type="button"
@@ -23,19 +23,13 @@ function Navbar() {
             <div className="collapse navbar-collapse " id="navbarCollapse">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item mx-3">
-                      <Link to="/home" className='text-decoration-none'>
-                        <a className="nav-link active" aria-current="page">Home</a>
-                      </Link>
+                    <a className="nav-link " aria-current="page" href="/home">Home</a>
                     </li>
                     <li className="nav-item mx-3">
-                    <Link to="/addRecipe" className='text-decoration-none'>
-                        <a className="nav-link" href="#">Add Recipe</a>
-                      </Link>
+                    <a className="nav-link" href="/addRecipe">Add Recipe</a>
                     </li>
                     <li className="nav-item mx-3">
-                      <Link to="/profile" className='text-decoration-none'>
-                        <a className="nav-link " href='#'>Profile</a>
-                      </Link>
+                    <a className="nav-link " href='/profile'>Profile</a>
                     </li>
                 </ul>
                 <div className="d-flex" >

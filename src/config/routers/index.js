@@ -1,16 +1,18 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import RequireAuth from "../../components/base/RequireAuth";
-import React from "react";
+import React, { Fragment } from "react";
 // import Swal from "sweetalert2";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "../../components/module/home/Home";
-import Profile from "../../components/module/profile/Profile";
-import DetailVideoRecipe from "../../components/module/detailvideorecipe/index";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "../../pages/Home";
+import Profile from "../../pages/Profile";
+import DetailVideoRecipe from "../../pages/DetailVideoRecipe";
+import DetailRecipe from "../../pages/DetailRecipe"
 import AddRecipe from "../../components/module/home/addrecipe/AddRecipe";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
 import Searching from "../../components/module/home/pagination/Searching"
+import NotFound from "../../pages/NotFound";
 
 // const Role = ({ children }) => {
 //   const { user } = useSelector((state) => state.auth);
@@ -22,21 +24,26 @@ import Searching from "../../components/module/home/pagination/Searching"
 //   return children;
 // };
 
+// const authPath = ['/auth', '/auth/login', '/auth/signup', '/auth/forgot-password']
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace="true" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/search" element={<Searching/>}/>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
-        <Route path="/addRecipe" element={<AddRecipe />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Navigate to="/home" replace="true" />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/search" element={<Searching/>}/>
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
+      <Route path="/detailRecipe" element={<DetailRecipe />} />
+      <Route path="/addRecipe" element={<AddRecipe />} />
+      <Route path='*' element={
+        <Fragment>
+          <NotFound />
+        </Fragment>
+      } />
+    </Routes>
   );
 };
 

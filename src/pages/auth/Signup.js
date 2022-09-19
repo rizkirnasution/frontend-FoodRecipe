@@ -7,7 +7,7 @@ function Signup() {
   return (
     <Fragment>
       <div className="d-flex align-items-center justify-content-center">
-        <div className="d-none d-lg-flex backdrop column justify-content-center">
+        <div className="d-none d-lg-flex backdrop-signup column justify-content-center">
           <img
             className="d-flex align-self-center justify-content-center"
             src={logo}

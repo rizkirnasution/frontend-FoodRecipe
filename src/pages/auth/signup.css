@@ -1,5 +1,6 @@
 body {
-  overflow: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
 }
 
 @font-face {
@@ -14,17 +15,16 @@ body {
   font-display: swap;
 }
 
-.signup > input {
+input.signup {
   border: 1px solid #8692a6 !important;
   border-radius: 10px;
 }
 
-.signup > input[type="text"]:focus,
-.signup > input[type="password"]:focus,
-.signup > input[type="number"]:focus,
-.signup > input[type="email"]:focus,
-.signup > input[type="checkbox"]:checked,
-.signup.uneditable-input:focus {
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="checkbox"]:checked {
   color: #696f79;
   border-color: rgba(239, 200, 26, 0.8) !important;
   box-shadow: 0 1px 1px rgba(239, 200, 26, 0.1) inset,
@@ -32,16 +32,16 @@ body {
   outline: 0 none;
 }
 
-.signup > input[type="checkbox"]:focus {
+input[type="checkbox"]:focus {
   box-shadow: none !important;
   outline: 0 none;
 }
 
-.signup > input[type="checkbox"]:checked {
+input[type="checkbox"]:checked {
   background: #efc81a;
 }
 
-.signup > input::placeholder {
+input.signup::placeholder {
   font-family: "Airbnb";
   font-style: normal;
   font-weight: 500;
@@ -51,19 +51,19 @@ body {
   color: #8692a6 !important;
 }
 
-.signup.form-control > input {
+input.signup {
   height: 2.825rem !important;
   background: #ffffff !important;
 }
 
-.signup.form-control > input:active {
+input.signup:active {
   background: #ffffff;
 }
 
-.signup > input:-webkit-autofill,
-.signup > input:-webkit-autofill:hover,
-.signup > input:-webkit-autofill:focus,
-.signup > input:-webkit-autofill:active {
+input.signup:-webkit-autofill,
+input.signup:-webkit-autofill:hover,
+input.signup:-webkit-autofill:focus,
+input.signup:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
@@ -83,7 +83,7 @@ label.inputLabelText {
   height: 2.825rem;
 }
 
-.btn-warning.submit.submit:hover {
+.btn-warning.submit:hover {
   background-color: #f4d032 !important;
   border-color: rgba(239, 200, 26, 0.8) !important;
   box-shadow: 0 4px 4px rgba(239, 200, 26, 0.1) inset,
@@ -138,7 +138,7 @@ label.inputLabelText {
   height: 100%;
 }
 
-div.backdrop {
+div.backdrop-signup {
   height: 150vh !important;
   width: 100% !important;
   background-size: cover;
@@ -153,19 +153,19 @@ div.backdrop {
 }
 
 @media screen and (max-width: 1500px) {
-  .signup > form {
+  form.signup {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 1200px) {
-  .signup > form {
+  form.signup {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .signup > form {
+  form.signup {
     width: 70%;
   }
 }

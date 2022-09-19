@@ -16,24 +16,14 @@
     padding: 0;
     margin: 0;
 }
-body{
+
+.body{
     background-color: #FFF5EC !important;
     font-family: "Airbnb"  !important;
-    overflow-y: hidden !important;
 }
+
 .custom{
     width: 100%;
-}
-.container_img::before{
-    content: "";
-    width: 30%;
-    height: 50rem;
-    position: absolute ;
-    background: #EFC81A !important;
-}
-.container_img::before{
-    top: 0;
-    right: 0px;
 }
 
 .const-icon{
@@ -43,39 +33,10 @@ body{
 .icon-search{
     margin-left: 15px;
 }
-.container_img img{
-    width: 90%;
-    position: relative;
-    right: 3%;
-    top: -50px;
-    display: flex;
-    justify-content: end;
-}
-.title{
-    font-family: "Airbnb_bold";
-    margin-top: 25%;
-    color: #2E266F;
-    margin-left: 8%;
-    font-weight: 700;
-}
 
-
-.title input{
-    width: 90%;
-    height:50px !important;
-    /* margin-left: px; */
-    margin-top: -39px;
-    padding-left: 40px ;
-    background: white;
-}
-
-.title div.conts-icon{
-    padding-top: 20px;
-    margin-left: 20px;
-}
 
 .popular{
-    margin-top: 280px !important;
+    margin-top: 200px !important;
     width: 600px !important;
 }
 
@@ -104,7 +65,7 @@ body{
 }
 
 .img_popular{
-    margin-left: -10% ;
+    margin-left: -5% ;
     display: flex;
     gap: 20px;
 }
@@ -134,24 +95,30 @@ body{
 }
 
 .img-recipe::before{
-    margin-left: -20%;
+    margin-left: -10%;
     margin-top: -4%;
 }
 
 .img-recipe img{
     margin-top: -400px;
-    margin-left: -5%;
+    margin-left: 5%;
+    width: 440px;
     /* height: 800px; */
 }
 
-.text-recipe h3{
+.text-recipe{
+    margin-left: -80px;
+}
+
+.text-recipe h1{
     color: #3F3A3A;
     font-family: "Airbnb";
+    font-weight: 100 !important;
     font-size: 30px;
     margin-top: 90px;
 }
 
-.text-recipe h3::after{
+.text-recipe h1::after{
     content: "";
     width: 100px;
     height: 1px;
@@ -162,19 +129,24 @@ body{
 
 .text-recipe p {
     font-family: "Airbnb";
-    font-size: 18px;
+    font-size: 16px;
     width: 400px;
     color: #3F3A3A;
 }
-
+.text-recipe button{
+    width: 150px !important;
+}
 .popular-recipe{
     margin-top: 300px;
 }
 
 
-@media screen and (max-width: 576px) {
-    .custom{
-        width: 576px  !important;
+@media screen and (max-width: 991px) {
+    /* .custom{
+        width: 100%  !important;
+    } */
+    .navbar-brand{
+        display: block !important;
     }
     .container_img::before{
         display: none;
@@ -197,5 +169,28 @@ body{
     }
     .conts.icon{
         width: 30px !important;
+    }
+    .text-recipe{
+        margin-left: 0px !important;
+    }
+    .new-recipe{
+        display: flex !important;
+        flex-direction: column ;
+    }
+    .text-recipe{
+        margin-left: -50px !important;
+        width: 100% !important;
+    }
+    .text-recipe h1{
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .text-recipe{
+        margin-left: 0px !important;
+    }
+    .body{
+        overflow-x: hidden;
     }
 }
