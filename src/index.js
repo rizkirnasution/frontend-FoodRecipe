@@ -7,18 +7,27 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import reportWebVitals from "./reportWebVitals";
 import { store, persistor } from "./redux/store";
-import { Provider as ReduxProvider } from "react-redux"
+import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "./router/browserHistory";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const { REACT_APP_NAME } = process.env;
 
 root.render(
   <ReduxProvider store={store}>
     <PersistGate persistor={persistor}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <HelmetProvider>
+        <Helmet>
+          <title>{REACT_APP_NAME}</title>
+          <link rel="canonical" href="https://www.tacobell.com/" />
+        </Helmet>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
     </PersistGate>
   </ReduxProvider>
 );
