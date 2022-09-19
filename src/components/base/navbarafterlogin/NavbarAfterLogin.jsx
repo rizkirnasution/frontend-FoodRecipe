@@ -1,13 +1,13 @@
 import React from 'react'
-import user_icon from '../../../../assets/home/User-icon.svg' 
+import {Link} from 'react-router-dom'
 import './navbar.css'
 
 function Navbar() {
   return (
-    <div className="container">
-        <nav className="navbar  navbar-expand-lg bg-transaparent sticky-top">
+    <div className="container mt-3">
+        <nav className="navbar navbar-expand-lg bg-transaparent sticky-top">
         <div className="container">
-        <a class="navbar-brand" href="/">Food Recipe</a>
+    
         <button
             className="navbar-toggler"
             type="button"
@@ -22,24 +22,18 @@ function Navbar() {
             <div className="collapse navbar-collapse " id="navbarCollapse">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item mx-3">
+                    {/* <Link to="/home" >
+                         <a className="nav-link" aria-current="page" href="#">Home</a>
+                    </Link> */}
                     <a className="nav-link active" aria-current="page" href="/home">Home</a>
                     </li>
                     <li className="nav-item mx-3">
                     <a className="nav-link" href="/addRecipe">Add Recipe</a>
                     </li>
                     <li className="nav-item mx-3">
-                    <a className="nav-link " href='/profile'>Profile</a>
+                    <a className="nav-link" href='/profile'>Profile</a>
                     </li>
                 </ul>
-                <div className="d-flex" >
-                    <div className="container_user ">
-                        <div className="container_user_img mt-4">
-                            <img src={user_icon} alt="" />
-                        </div> 
-                        <span></span>
-                    </div>
-                    <p className='m-auto ms-2'><a href="#" className='text-decoration-none text-white'>Login</a></p>
-                </div>
             </div>
         </div>
     </nav>

@@ -7,7 +7,6 @@ import Home from "../../components/module/home/Home";
 import Profile from "../../pages/Profile";
 import DetailVideoRecipe from "../../pages/DetailVideoRecipe";
 import DetailRecipe from "../../pages/DetailRecipe"
-import DetailResep from "../../components/module/Detail/DetailResep"
 import AddRecipe from "../../components/module/home/addrecipe/AddRecipe";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
@@ -38,7 +37,6 @@ const Router = () => {
         <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
         <Route path="/detailRecipe" element={<DetailRecipe />} />
         <Route path="/addRecipe" element={<AddRecipe />} />
-        <Route path="/detailresep" element={<DetailResep />} />
       </Routes>
     </BrowserRouter>
   );

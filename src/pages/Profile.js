@@ -5,6 +5,7 @@ import editIcon from "../assets/profile/ic-edited-profile.svg"
 import { Button, Modal, Form, Container} from "react-bootstrap";
 import FooterAfter from "../components/module/footer/FooterAfter"
 import ProfileNavbar from "../components/module/profilenavbar/index"
+import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLogin"
 import ProfileNavbarTop from "../components/base/navbar/NavbarProfileTop"
 import '../components/module/profile/profile.css'
 
@@ -17,8 +18,9 @@ const Profile =()=>{
     return(
       
       <>
-      <ProfileNavbarTop />
-      <div className="">
+      {/* <ProfileNavbarTop /> */}
+      <NavbarAfterLogin/>
+      <div className="container">
         
         <section className="profile ff-airbnb text-center mb-5">
           <div className="d-flex justify-content-center">
@@ -42,8 +44,6 @@ const Profile =()=>{
         <ProfileNavbar/>
         </div>
         
-
-
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Update User</Modal.Title>

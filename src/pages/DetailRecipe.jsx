@@ -4,13 +4,14 @@ import play from "../assets/detailRecipe/play.svg";
 import "../components/module/detailrecipe/detailrecipe.css";
 import comment from "../assets/detailRecipe/comment.png";
 import Navbar from "../components/base/navbar/NavbarProfileTop"
+import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLogin"
 import Footer from "../components/module/footer/Footer"
 
 function Detail() {
   return (
     <>
-        <Navbar/>
-        <div className="small-middle-container mt-5">
+        <NavbarAfterLogin/>
+        <div className="small-middle-container">
       <div className="mt-5 py-5">
         <h1 className="text-center">Loream Sandwich</h1>
         <div className="d-flex align-items-center justify-content-center my-3">

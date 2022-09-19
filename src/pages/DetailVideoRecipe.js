@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from "../components/base/navbar/NavbarProfileTop"
+import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLogin"
 import VideoUtama from "../assets/detailVideos/videoutama.svg"
 import VideoStep1 from "../assets/detailVideos/video-step1.svg"
 import VideoStep2 from "../assets/detailVideos/video-step-2.svg"
@@ -14,7 +15,7 @@ function DetailVideoRecipe(){
     return(
       
         <div className="">
-        <Navbar/>
+        <NavbarAfterLogin/>
             
                 <main className="mt-5">
                 <div className="container">
@@ -37,8 +38,8 @@ Cut the condiment and then mix it</h3>
                         {/* {moment(create).format("LLLL")} */}
                     </p>
                     </div>
-                    <div className={`${styles.sugestion} col-lg-3 mb-5 `}>
-                    <h3 className={`${styles.next}`}>Next </h3>
+                    <div className={`${styles.sugestion} col-lg-3 mb-5 mt-5`}>
+                    <h3 className={`${styles.next} mt-4`}>Next </h3>
                     <div className={`${styles.imageStep} mt-3`}>
                         <img src={VideoStep1} alt="Next Video 1" />
                         <h4 className={`${styles.step}  text-white`}>[Step 5]</h4>
@@ -76,7 +77,7 @@ Cut the condiment and then mix it</h3>
                 </div>
                 </div>
             </main>
-        <Footer/>
+            <Footer/>
          </div>
        
      
