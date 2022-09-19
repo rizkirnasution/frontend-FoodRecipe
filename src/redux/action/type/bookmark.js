@@ -1,0 +1,5 @@
+export const getBookmarkType = 'get/bookmark'
+export const getBookmarkByUserIdType = 'getByUserId/bookmark'
+export const postBookmarkType = 'post/bookmark'
+export const putBookmarkType = 'put/bookmark'
+export const deleteBookmarkType = 'delete/bookmark'

@@ -1,0 +1,6 @@
+export const getRecipeType = 'get/recipe'
+export const getRecipeByIdType = 'getById/recipe'
+export const getRecipeByUserIdType = 'getByUserId/recipe'
+export const postRecipeType = 'post/recipe'
+export const putRecipeType = 'put/recipe'
+export const deleteRecipeType = 'delete/recipe'
