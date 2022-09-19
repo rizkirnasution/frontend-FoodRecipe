@@ -12,6 +12,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "./router/browserHistory";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const { REACT_APP_NAME } = process.env;
@@ -22,10 +25,11 @@ root.render(
       <HelmetProvider>
         <Helmet>
           <title>{REACT_APP_NAME}</title>
-          <link rel="canonical" href="https://www.tacobell.com/" />
+          <link rel="canonical" href={window.location.href} />
         </Helmet>
         <BrowserRouter>
           <App />
+          <ToastContainer />
         </BrowserRouter>
       </HelmetProvider>
     </PersistGate>
