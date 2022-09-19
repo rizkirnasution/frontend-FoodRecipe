@@ -2,14 +2,14 @@
 @font-face {
     font-family: "Airbnb";
     src: 
-    url('./AirbnbCereal_W_Md.otf');
+    url('../../../assets/fonts/airbnb.woff2');
     font-display: swap;
     font-weight: bold;
 }
 @font-face {
     font-family: "Airbnb_bold";
     src:
-    url('./AirbnbCereal_W_Bd.otf');
+    url('../../../assets/fonts/AirbnbCereal_W_Bd.otf');
     
 }
 *{
@@ -19,6 +19,7 @@
 body{
     background-color: #FFF5EC !important;
     font-family: "Airbnb"  !important;
+    overflow-y: hidden !important;
 }
 .custom{
     width: 100%;
@@ -32,7 +33,7 @@ body{
 }
 .container_img::before{
     top: 0;
-    right: -30px;
+    right: 0px;
 }
 
 .const-icon{
@@ -169,6 +170,8 @@ body{
 .popular-recipe{
     margin-top: 300px;
 }
+
+
 @media screen and (max-width: 576px) {
     .custom{
         width: 576px  !important;

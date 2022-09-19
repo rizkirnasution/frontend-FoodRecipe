@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Airbnb";
-    src: url("../airbnb.woff2");
+    src: url("../../../../assets/fonts/airbnb.woff2");
     font-display: swap;
   }
   .ff-airbnb {
@@ -9,6 +9,7 @@
   .footer{
     background-color: #EFC81A;
   }
+
   footer .top {
     height: 300px;
     display: flex;
@@ -17,6 +18,7 @@
     align-items: center;
     text-transform: capitalize;
   }
+  
   .top h1{
     color: #2E266F;
   }

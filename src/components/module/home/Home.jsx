@@ -14,11 +14,31 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import '../../../../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
 import Footer from './footer/FooterTopandBottom';
 import Popular from './popular/Popular';
+import Card from '../../base/Card/Card';
 
+
+const data = [
+    {
+        id: 1,
+        src: coffe_lava,
+        title: "coffe",
+    },
+    {
+        id: 2,
+        src: bomb_chiken,
+        title: "coffe",
+    },
+    {
+        id: 3,
+        src: chiken_kare,
+        title: "coffe",
+    },
+    
+]
 
 function Home() {
   return (
-    <>
+    <div className='body'>
     <div className="container custom">
         <Navbar />
             <div className="row gx-5 ">
@@ -65,34 +85,24 @@ function Home() {
                     <p>Popular Recipe</p>
                 </div>
                 <div className="row popular-recipe">
-                    <div className="row mb-5  g-xs-5 mt-5`d-flex justify-content-end">
-                        <div className="col-sm-4  mt-5 text-center">
-                            <img src={chiken_kare} alt=""  width={300}/>
+                    <div className="mb-5 d-flex justify-content-evenly  g-4 imagination">
+
+                        {data.map((item)=>(
+                        <div className="col" key={item.id}>
+                            <Card 
+                            src={item.src}
+                            titleName={item.title}
+                            />
                         </div>
-                        <div className="col-sm-4 mt-5 text-center">
-                            <img src={bomb_chiken} alt=""  width={300}/>
-                        </div>
-                        <div className="col-sm-4 mt-5 text-center">
-                            <img src={banana_pop} alt=""  width={300}/>
-                        </div>
-                    </div>
-                    <div className="row mb-5 g-xs-5 ">
-                        <div className="col-sm-4 mt-5 text-center">
-                            <img src={coffe_lava} alt="" width={300} />
-                        </div>
-                        <div className="col-sm-4 mt-5 text-center">
-                            <img src={sugar_salmon} alt=""  width={300}/>
-                        </div>
-                        <div className="col-sm-4 mt-5 text-center">
-                            <img src={indian_salad} alt=""  width={300}/>
-                        </div>
+                        ))
+                        } 
                     </div>
                 </div>
                 
             </div>
     </div>    
         <Footer />
-    </>
+    </div>
 
         
     
