@@ -3,15 +3,16 @@
   src: url("../../../assets/detailRecipe/AirbnbCereal_W_Bd.otf");
   font-display: swap;
 }
+
 .small-middle-container {
   margin: auto;
   width: 70%;
 }
 
-.picture {
+/* .picture {
   max-width: 600px;
   max-height: 450px;
-}
+} */
 
 .btn-warning {
   width: 225px;
@@ -23,22 +24,77 @@
   height: 64px;
 }
 
-#short-des {
-  position: absolute;
-  left: 955px;
-  top: 536px;
-  width: 50px;
-  height: 50px;
-  background-color: white;
-  z-index: 7;
-  border-radius: 16px;
+div.gallerypic {
+  max-width: 600px;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  padding: 3px;
+  margin: auto;
+  /* float: left; */
 }
 
-#short-des2 {
+div.gallerypic span.bookmark {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  z-index: 8;
-  left: 895px;
-  top: 536px;
+  left: 90%;
+  top: 84%;
+}
+
+div.gallerypic span.like {
+  position: absolute;
+  left: 82%;
+  top: 84%;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 1px) and (max-width: 350px) {
+  div.gallerypic span.bookmark {
+    left: 84%;
+    top: 73%;
+  }
+
+  div.gallerypic span.like {
+    left: 69%;
+    top: 73%;
+  }
+
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (min-width: 351px) and (max-width: 500px) {
+  div.gallerypic span.bookmark {
+    left: 87%;
+    top: 80%;
+  }
+
+  div.gallerypic span.like {
+    left: 74%;
+    top: 80%;
+  }
+
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (min-width: 501px) and (max-width: 750px) {
+  div.gallerypic span.bookmark {
+    left: 88%;
+    top: 82%;
+  }
+
+  div.gallerypic span.like {
+    left: 77%;
+    top: 82%;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
 }
