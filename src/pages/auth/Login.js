@@ -1,64 +1,87 @@
 import "./login.css";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/auth/login/logo.svg";
-import {
-  loginActionCreator,
-  loginCreatorAction,
-} from "../../redux/action/creator/auth";
+import { loginActionCreator } from "../../redux/action/creator/auth";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useDidUpdate } from "../../custom-hooks/common";
-import Swal from "sweetalert2";
-import { ErrorMessage, withFormik } from "formik";
 import { signInModel } from "../../utils/schema";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { toast } from 'react-toastify';
+import { Helmet } from "react-helmet-async";
 
 const { REACT_APP_NAME } = process.env;
 
-const LoginWithFormikProps = ({
-  errors,
-  values,
-  handleChange,
-  handleSubmit,
-}) => {
+const Login = () => {
   const auth = useSelector((state) => state.auth, shallowEqual);
+  const dispatch = useDispatch();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(signInModel)
+  });
+  const onSubmit = (value) => {
+    dispatch(loginActionCreator(value))
+  }
+  const toastId = React.useRef(null);
 
   useDidUpdate(() => {
+    const toastOptions = {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }
+
+    if (auth.login?.isPending) {
+      toast.dismiss();
+
+      toastId.current = toast.loading('Loading...', toastOptions);
+    }
+
     if (auth.login?.isRejected) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: auth.login?.errorMessage,
-      });
+      toast.dismiss();
+
+      toastId.current = toast.error(auth.login?.errorMessage, toastOptions);
     }
-    if (auth.login?.isFulfilled && auth.login?.response?.role !== "creator") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Access denied, you're not creator",
-      });
-    }
+
     if (auth.login?.isFulfilled) {
-      Swal.fire({
-        icon: "success",
-        title: "Yeah!",
-        text: "Login success!",
-      });
+      toast.dismiss();
+
+      toastId.current = toast.success('Login success!', toastOptions);
     }
-  }, [auth]);
+
+    if (errors.email) {
+      toast.dismiss(toastId.current);
+
+      toast.error(`Email: ${errors.email?.message}`, toastOptions);
+    }
+
+    if (errors.password) {
+      toast.dismiss(toastId.current);
+
+      toast.error(`Password: ${errors.password?.message}`, toastOptions);
+    }
+  }, [auth, errors]);
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{REACT_APP_NAME} - Login</title>
+      </Helmet>
       <div className="d-flex align-items-center justify-content-center">
         <div className="d-none d-lg-flex backdrop-login column justify-content-center">
           <img
             className="d-flex align-self-center justify-content-center"
             src={logo}
-            alt=""
+            alt="Logo"
           />
         </div>
-        <div class="container">
+        <div className="container">
           <div className="column d-flex align-items-center justify-content-center my-5 py-4">
-            <form className="login text-center" onSubmit={handleSubmit}>
+            <form className="login text-center" onSubmit={handleSubmit(onSubmit)}>
               <h1 className="text-center title-text">
                 <b>Welcome</b>
               </h1>
@@ -73,17 +96,8 @@ const LoginWithFormikProps = ({
                 name="email"
                 className="login form-control my-2 mb-4"
                 disabled={auth.login?.isPending}
-                value={values.email}
-                onChange={handleChange("email")}
                 placeholder="email"
-                onInvalid={(e) =>
-                  Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: <ErrorMessage name="email" />,
-                  })
-                }
-                required
+                {...register("email")}
               />
               <label className="inputLabelText" htmlFor="password">
                 Password
@@ -93,32 +107,18 @@ const LoginWithFormikProps = ({
                 name="password"
                 className="login form-control my-2"
                 disabled={auth.login?.isPending}
-                value={values.password}
-                onChange={handleChange("password")}
                 placeholder="Password"
-                onInvalid={(e) =>
-                  Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: errors.password ? (
-                      <ErrorMessage name="password" />
-                    ) : (
-                      ""
-                    ),
-                  })
-                }
-                required
+                {...register("password")}
               />
-              <div class="form-check mt-3">
+              <div className="form-check mt-3">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
-                  value=""
                   id="flexCheckDefault"
                 />
                 <label
-                  class="form-check-label float-start terms-and-conditions-text mb-4"
-                  for="flexCheckDefault"
+                  className="form-check-label float-start terms-and-conditions-text mb-4"
+                  htmlFor="flexCheckDefault"
                 >
                   I agree with terms &#38; conditions
                 </label>
@@ -147,28 +147,6 @@ const LoginWithFormikProps = ({
         </div>
       </div>
     </Fragment>
-  );
-};
-
-const LoginWithFormik = withFormik({
-  validationSchema: signInModel,
-  displayName: "LoginForm",
-  mapPropsToValues: () => ({ email: "", password: "" }),
-  handleSubmit: (values, { setSubmitting, props }) => {
-    props.callback(values);
-    setSubmitting(false);
-  },
-  validateOnBlur: false,
-  validateOnChange: false,
-})(LoginWithFormikProps);
-
-const Login = () => {
-  const dispatch = useDispatch();
-
-  return (
-    <LoginWithFormik
-      callback={(values) => dispatch(loginActionCreator(values))}
-    />
   );
 };
 
