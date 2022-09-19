@@ -32,7 +32,9 @@ ul li a{
     font-weight: 500;
     /* font-family: ; */
 }
-
+.login{
+    margin-top: 35px;
+}
 @media screen and (max-width: 576px){
     .navbar-brand{
         display: block;

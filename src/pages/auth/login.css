@@ -1,5 +1,6 @@
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @font-face {
@@ -150,7 +151,7 @@ form.login {
 }
 
 div.backdrop-login {
-  height: 100vh;
+  height: 140vh;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;

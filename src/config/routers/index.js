@@ -3,7 +3,7 @@
 import React, { Fragment } from "react";
 // import Swal from "sweetalert2";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "../../components/module/home/Home";
+import Home from "../../pages/Home";
 import Profile from "../../pages/Profile";
 import DetailVideoRecipe from "../../pages/DetailVideoRecipe";
 import DetailRecipe from "../../pages/DetailRecipe";

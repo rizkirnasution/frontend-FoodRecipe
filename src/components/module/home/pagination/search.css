@@ -27,6 +27,7 @@
     color: white;
     background: #EFC81A;
     margin-left: -74px;
+    width: 20%;
     border-radius: 0 15px 15px 0!important;
 }
 input[type="search"]:focus

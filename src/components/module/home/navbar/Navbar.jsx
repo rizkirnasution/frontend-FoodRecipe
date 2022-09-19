@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import user_icon from '../../../../assets/home/User-icon.svg' 
 import './navbar.css'
 
@@ -22,7 +23,7 @@ function Navbar() {
             <div className="collapse navbar-collapse " id="navbarCollapse">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item mx-3">
-                    <a className="nav-link active" aria-current="page" href="/home">Home</a>
+                    <a className="nav-link " aria-current="page" href="/home">Home</a>
                     </li>
                     <li className="nav-item mx-3">
                     <a className="nav-link" href="/addRecipe">Add Recipe</a>
@@ -38,7 +39,10 @@ function Navbar() {
                         </div> 
                         <span></span>
                     </div>
-                    <p className='m-auto ms-2'><a href="#" className='text-decoration-none text-white'>Login</a></p>
+                    <Link to="/login" className='text-decoration-none login'>
+                       <p className='m-auto ms-4 '><a href="#" className='text-decoration-none text-white'>Login</a></p>
+                    </Link>
+                   
                 </div>
             </div>
         </div>
