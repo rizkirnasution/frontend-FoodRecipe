@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { useSelector } from "react-redux";
-=======
 // import { useSelector } from "react-redux";
->>>>>>> d3233626bcf0548e267c8fa9e6b9b4bae1e760dd
 // import RequireAuth from "../../components/base/RequireAuth";
 import React, { Fragment } from "react";
 // import Swal from "sweetalert2";
@@ -10,12 +6,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../../components/module/home/Home";
 import Profile from "../../pages/Profile";
 import DetailVideoRecipe from "../../pages/DetailVideoRecipe";
-import DetailRecipe from "../../pages/DetailRecipe"
+import DetailRecipe from "../../pages/DetailRecipe";
 import AddRecipe from "../../components/module/home/addrecipe/AddRecipe";
 import Login from "../../pages/auth/Login";
 import Signup from "../../pages/auth/Signup";
 import ForgotPassword from "../../pages/auth/ForgotPassword";
-import Searching from "../../components/module/home/pagination/Searching"
+import Searching from "../../components/module/home/pagination/Searching";
 import NotFound from "../../pages/NotFound";
 
 // const Role = ({ children }) => {
@@ -35,18 +31,21 @@ const Router = () => {
       <Route path="/" element={<Navigate to="/home" replace="true" />} />
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/search" element={<Searching/>}/>
+      <Route path="/search" element={<Searching />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
       <Route path="/detailRecipe" element={<DetailRecipe />} />
       <Route path="/addRecipe" element={<AddRecipe />} />
-      <Route path='*' element={
-        <Fragment>
-          <NotFound />
-        </Fragment>
-      } />
+      <Route
+        path="*"
+        element={
+          <Fragment>
+            <NotFound />
+          </Fragment>
+        }
+      />
     </Routes>
   );
 };
