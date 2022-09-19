@@ -27,22 +27,6 @@ import NotFound from "../../pages/NotFound";
 // const authPath = ['/auth', '/auth/login', '/auth/signup', '/auth/forgot-password']
 const Router = () => {
   return (
-<<<<<<< Updated upstream
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace="true" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/search" element={<Searching/>}/>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
-        <Route path="/detailRecipe" element={<DetailRecipe />} />
-        <Route path="/addRecipe" element={<AddRecipe />} />
-      </Routes>
-    </BrowserRouter>
-=======
     <Routes>
       <Route path="/" element={<Navigate to="/home" replace="true" />} />
       <Route path="/home" element={<Home />} />
@@ -59,7 +43,6 @@ const Router = () => {
         </Fragment>
       } />
     </Routes>
->>>>>>> Stashed changes
   );
 };
 
