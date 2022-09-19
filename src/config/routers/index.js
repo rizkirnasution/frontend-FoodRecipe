@@ -36,6 +36,7 @@ const Router = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/detailVideoRecipe" element={<DetailVideoRecipe />} />
+      <Route path="/detailRecipe" element={<DetailRecipe />} />
       <Route path="/addRecipe" element={<AddRecipe />} />
       <Route path='*' element={
         <Fragment>
