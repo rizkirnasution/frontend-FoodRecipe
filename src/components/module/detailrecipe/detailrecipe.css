@@ -34,13 +34,13 @@ div.gallerypic {
   /* float: left; */
 }
 
-div.gallerypic span.bookmark {
+div.gallerypic span.like {
   position: absolute;
   left: 90%;
   top: 84%;
 }
 
-div.gallerypic span.like {
+div.gallerypic span.bookmark {
   position: absolute;
   left: 82%;
   top: 84%;
@@ -97,4 +97,7 @@ div.gallerypic span.like {
     width: 32px;
     height: 32px;
   }
+}
+.icon:hover {
+  cursor: pointer;
 }
