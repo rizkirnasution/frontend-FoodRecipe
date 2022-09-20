@@ -103,13 +103,15 @@ const Home = () => {
     // ])
 
     const fetch  = async() =>{
-        const response = await axios.get(`http://localhost:8080/api/v1/recipe`)
+        const response = await axios.get(`https://food-recipe-production.up.railway.app/api/v1/recipe`)
         .catch(err => console.log(err))
 
         
         dispatch(setRecipes(response.data.data))
+        console.log(response.data)
         // return 
     }
+    
     console.log(recipes)
     useEffect(() =>{
         fetch()
