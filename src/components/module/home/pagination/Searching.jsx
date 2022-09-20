@@ -22,9 +22,8 @@ function Searching() {
   };
  
   function fecth() {
-    // `http://localhost:8080/api/v1/recipe?search=${searching}&sortBy=${sortBy}`
     axios
-    .get('http://localhost:8080/api/v1/' + "recipe?search=" + search1 + "&sortby=title&sortBy=" + sort1 + "&page=1&limit=24")
+    .get(process.env.REACT_APP_BACKEND_URL + "/recipe?search=" + search1 + "&sortby=title&sortBy=" + sort1 + "&page=1&limit=24")
     .then((response) => {
         setRecipes(response.data.data);
         // console.log(response.data.data);
@@ -64,59 +63,6 @@ function Searching() {
 
 
 
-
-
-  // const navigate = useNavigate();
-  // const [show, setShow] = useState(false);
-  // // const handleHide = () => setShow(false);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const [sortBy, setSortBy] = useState("");
-  // const [search, setSearch] = useState("");
-  // // const [recipes, setRecipes] = useState([]);
-  // const dispatch = useDispatch()
-  // // const handleSort = (e) => {
-  // //   // getData()
-  // //   setSortBy(e.currentTarget.value);
-  // //   // setSearchParams({search, sortBy})
-  // // };
-  // // const searh = (e) =>{
-  // //   setSearch(e.currentTarget.value)
-  // // }
-  // // const handleSearch = () => {
-  // //   searh()
-  // //   getData()
-  // //   // setSearchParams({search, sortBy})
-  // //   navigate({
-  // //     pathname: "/sort",
-  // //     sort: `?sortBy=${sortBy}`,
-  // //   });
-  // // };
- 
-  // const getData =  async() => {
-  //   const searching = searchParams.get("search") === null ? "" : searchParams.get("search");
-  //   const result = await axios
-  //   .get(
-  //     `http://localhost:8080/api/v1/recipe?search=${searching}&sortBy=${sort1}`
-  //   )
-  //   .then((response) => {
-  //       setRecipes(response.data.data);
-  //       console.log(response.data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  //     console.log(result.data.data)
-  //     // dispatch(setRecipes(result.data.data))
-  // }
-  // useEffect(() => {
-  //   getData()
-  //   setSearch(searchParams.get("search"))
-  //   searchParams.get("search")
-  //   searchParams.get("sortBy")
-  // }, [searchParams1, sortBy  ])
- 
-
-
   return (
     <>
         <div className="container">
@@ -129,26 +75,12 @@ function Searching() {
                 <form className="d-flex form-search" role="search"
                 onSubmit={handleSearch1}
                 >
-                {/* <select onChange={handleSort}>
-                  <option value="">Pilih Option</option>
-                  <option value="ASC">A-Z</option>
-                  <option value="DESC">Z-A</option>
-                </select> */}
                 <input type="text" name="search" 
                 placeholder="search" 
                 className="form-control input-search " 
                 onChange={(e) => setSearch1(e.target.value)} />
                 <button type='submit' className="btn btn-warning btn-custom" >search</button>
 
-                  {/* <input className="form-control input-search " 
-                  type="search" placeholder="Search" aria-label="Search"
-                  onChange={searh}
-                  /> */}
-                  {/* <button 
-                  className="btn btn-warning btn-custom" 
-                  type="submit"
-                  onClick={handleSearch}
-                  >Search</button> */}
                 </form>
               </div>
             </div>
@@ -196,12 +128,7 @@ function Searching() {
               </div>
               
             )}
-                    {/* 
-                      <img src={banana_pop} alt=""  />
-                      <img src={banana_pop} alt=""  />
-                      <img src={banana_pop} alt=""  />
-                      <img src={banana_pop} alt=""  /> 
-                    */}
+               
               </div>
           </div>
           <div className="d-flex flex-row my-5 justify-content-evenly">
