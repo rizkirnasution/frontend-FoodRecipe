@@ -14,12 +14,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
-import { injectStore } from "./utils/http";
-
-injectStore(store)
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 
 const { REACT_APP_NAME } = process.env;
 

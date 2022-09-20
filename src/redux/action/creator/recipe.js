@@ -16,12 +16,16 @@ import {
     deleteRecipe
 } from '../../../utils/http'
 
-export const getRecipeActionCreator = createAsyncThunk(getRecipeType, async (data, {
+const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
     fulfillWithValue,
     rejectWithValue
 }) => {
     try {
-        const response = await getRecipes(data)
+        let request
+
+        if (action.startsWith('put/recipe')) request = await api(data?.id, data?.value)
+
+        const response = request || await api(data)
 
         return fulfillWithValue(response)
     } catch (error) {
@@ -29,67 +33,9 @@ export const getRecipeActionCreator = createAsyncThunk(getRecipeType, async (dat
     }
 })
 
-export const getRecipeByIdActionCreator = createAsyncThunk(getRecipeByIdType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await getRecipeById(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const getRecipeByUserIdActionCreator = createAsyncThunk(getRecipeByUserIdType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await getRecipeByUserId(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const postRecipeActionCreator = createAsyncThunk(postRecipeType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await postRecipe(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const putRecipeActionCreator = createAsyncThunk(putRecipeType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await putRecipe(data?.id, data?.value)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const deleteRecipeActionCreator = createAsyncThunk(deleteRecipeType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await deleteRecipe(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
+export const getRecipeActionCreator = thunkAction(getRecipeType, getRecipes)
+export const getRecipeByIdActionCreator = thunkAction(getRecipeByIdType, getRecipeById)
+export const getRecipeByUserIdActionCreator = thunkAction(getRecipeByUserIdType, getRecipeByUserId)
+export const postRecipeActionCreator = thunkAction(postRecipeType, postRecipe)
+export const putRecipeActionCreator = thunkAction(putRecipeType, putRecipe)
+export const deleteRecipeActionCreator = thunkAction(deleteRecipeType, deleteRecipe)

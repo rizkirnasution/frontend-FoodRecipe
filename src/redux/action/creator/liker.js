@@ -12,12 +12,12 @@ import {
     deleteLiker
 } from '../../../utils/http'
 
-export const getLikerActionCreator = createAsyncThunk(getLikerType, async (data, {
+const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
     fulfillWithValue,
     rejectWithValue
 }) => {
     try {
-        const response = await getLikers(data)
+        const response = await api(data)
 
         return fulfillWithValue(response)
     } catch (error) {
@@ -25,41 +25,7 @@ export const getLikerActionCreator = createAsyncThunk(getLikerType, async (data,
     }
 })
 
-export const getLikerByUserIdActionCreator = createAsyncThunk(getLikerByUserIdType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await getLikerByUserId(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const postLikerActionCreator = createAsyncThunk(postLikerType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await postLiker(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const deleteLikerActionCreator = createAsyncThunk(deleteLikerType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await deleteLiker(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
+export const getLikerActionCreator = thunkAction(getLikerType, getLikers)
+export const getLikerByUserIdActionCreator = thunkAction(getLikerByUserIdType, getLikerByUserId)
+export const postLikerActionCreator = thunkAction(postLikerType, postLiker)
+export const deleteLikerActionCreator = thunkAction(deleteLikerType, deleteLiker)

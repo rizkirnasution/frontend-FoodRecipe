@@ -6,18 +6,18 @@ import {
     logoutType
 } from '../type/auth'
 import {
-    authRegister,
-    authLogin,
-    authRefreshToken,
-    authLogout
+    register,
+    login,
+    refreshToken,
+    logout
 } from '../../../utils/http'
 
-export const registerActionCreator = createAsyncThunk(registerType, async (data, {
+const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
     fulfillWithValue,
     rejectWithValue
 }) => {
     try {
-        const response = await authRegister(data)
+        const response = await api(data)
 
         return fulfillWithValue(response)
     } catch (error) {
@@ -25,41 +25,7 @@ export const registerActionCreator = createAsyncThunk(registerType, async (data,
     }
 })
 
-export const loginActionCreator = createAsyncThunk(loginType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await authLogin(data)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const refreshTokenActionCreator = createAsyncThunk(refreshTokenType, async (_, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await authRefreshToken()
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
-
-export const logoutActionCreator = createAsyncThunk(logoutType, async (_, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await authLogout()
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
+export const registerActionCreator = thunkAction(registerType, register)
+export const loginActionCreator = thunkAction(loginType, login)
+export const refreshTokenActionCreator = thunkAction(refreshTokenType, refreshToken)
+export const logoutActionCreator = thunkAction(logoutType, logout)

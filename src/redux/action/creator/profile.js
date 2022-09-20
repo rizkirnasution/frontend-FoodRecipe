@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getProfileType, putProfileType } from '../type/profile'
-import { fetchProfile, updateProfile } from '../../../utils/http'
+import { putProfileType } from '../type/profile'
+import { updateProfile } from '../../../utils/http'
 
-export const getProfileActionCreator = createAsyncThunk(getProfileType, async (data, {
+const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
     fulfillWithValue,
     rejectWithValue
 }) => {
     try {
-        const response = await fetchProfile()
+        const response = await api(data?.id, data?.value)
 
         return fulfillWithValue(response)
     } catch (error) {
@@ -15,15 +15,4 @@ export const getProfileActionCreator = createAsyncThunk(getProfileType, async (d
     }
 })
 
-export const putProfileActionCreator = createAsyncThunk(putProfileType, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        const response = await updateProfile(data?.id, data?.value)
-
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
+export const putProfileActionCreator = thunkAction(putProfileType, updateProfile)
