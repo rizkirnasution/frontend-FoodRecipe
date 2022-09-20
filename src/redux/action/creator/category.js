@@ -8,7 +8,6 @@ const thunkAction = (action, api) => createAsyncThunk(action, async (_, {
 }) => {
     try {
         const response = await api()
-
         return fulfillWithValue(response)
     } catch (error) {
         return rejectWithValue(error)

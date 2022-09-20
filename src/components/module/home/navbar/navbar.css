@@ -15,6 +15,7 @@
     border-radius:50%;
 }
 
+
 .container_user span::before{
     content: "oo";
     width: 15px;
@@ -39,4 +40,10 @@ ul li a{
     .navbar-brand{
         display: block;
     }
+    .navbar-collapse{
+    background:#EFC81A ;
+    display: flex;
+    justify-content: center !important;
+    }
+    
 }
