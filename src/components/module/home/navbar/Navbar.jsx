@@ -1,9 +1,17 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import user_icon from '../../../../assets/home/User-icon.svg' 
 import './navbar.css'
 
+
 function Navbar() {
+  const test = useSelector((state) => {
+    console.log(state.auth)
+    return state.auth
+  }
+  );
+  console.log(test)
   return (
     <div className="container">
         <nav className="navbar  navbar-expand-lg bg-transaparent sticky-top">
@@ -39,6 +47,9 @@ function Navbar() {
                         </div> 
                         <span></span>
                     </div>
+                    {
+
+                    }
                     <Link to="/login" className='text-decoration-none login'>
                        <p className='m-auto ms-4 '><a href="#" className='text-decoration-none text-white'>Login</a></p>
                     </Link>
