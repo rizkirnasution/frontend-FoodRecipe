@@ -15,7 +15,7 @@ const duration = new Duration(REACT_APP_REQUEST_TIMEOUT);
 
 axiosInstance.defaults.baseURL = REACT_APP_BACKEND_URL;
 axiosInstance.defaults.timeout = duration.milliseconds();
-// axiosInstance.defaults.withCredentials = true
+axiosInstance.defaults.withCredentials = true
 axiosInstance.defaults.paramsSerializer = (params) =>
   qs.stringify(params, {
     arrayFormat: "brackets",
