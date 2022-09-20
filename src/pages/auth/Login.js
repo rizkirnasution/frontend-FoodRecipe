@@ -1,14 +1,14 @@
 import "./login.css";
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/auth/login/logo.svg";
 import { loginActionCreator } from "../../redux/action/creator/auth";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { useDidUpdate } from "../../custom-hooks/common";
 import { signInModel } from "../../utils/schema";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 
 const { REACT_APP_NAME } = process.env;
@@ -16,12 +16,17 @@ const { REACT_APP_NAME } = process.env;
 const Login = () => {
   const auth = useSelector((state) => state.auth, shallowEqual);
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(signInModel)
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signInModel),
   });
   const onSubmit = (value) => {
-    dispatch(loginActionCreator(value))
-  }
+    dispatch(loginActionCreator(value));
+  };
   const toastId = React.useRef(null);
 
   useDidUpdate(() => {
@@ -33,12 +38,12 @@ const Login = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-    }
+    };
 
     if (auth.login?.isPending) {
       toast.dismiss();
 
-      toastId.current = toast.loading('Loading...', toastOptions);
+      toastId.current = toast.loading("Loading...", toastOptions);
     }
 
     if (auth.login?.isRejected) {
@@ -50,7 +55,9 @@ const Login = () => {
     if (auth.login?.isFulfilled) {
       toast.dismiss();
 
-      toastId.current = toast.success('Login success!', toastOptions);
+      toastId.current = toast.success("Login success!", toastOptions);
+
+      navigate("/home");
     }
 
     if (errors.email) {
@@ -81,7 +88,10 @@ const Login = () => {
         </div>
         <div className="container">
           <div className="column d-flex align-items-center justify-content-center my-5 py-4">
-            <form className="login text-center" onSubmit={handleSubmit(onSubmit)}>
+            <form
+              className="login text-center"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <h1 className="text-center title-text">
                 <b>Welcome</b>
               </h1>
@@ -115,6 +125,7 @@ const Login = () => {
                   className="form-check-input"
                   type="checkbox"
                   id="flexCheckDefault"
+                  required
                 />
                 <label
                   className="form-check-label float-start terms-and-conditions-text mb-4"
@@ -131,8 +142,10 @@ const Login = () => {
                 Login
               </button>
               <div className="mb-4">
-                <label className="forgot-password-text float-end mt-2">
-                  Forgot password?
+                <label className="float-end mt-2">
+                  <Link className="forgot-password-text " to="/forgot-password">
+                    Forgot password?
+                  </Link>
                 </label>
               </div>
               <br />

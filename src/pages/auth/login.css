@@ -127,6 +127,12 @@ label.inputLabelText {
 
 .forgot-password-text {
   font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.forgot-password-text:hover {
+  color: #efc81a;
 }
 
 .terms-and-conditions-text {
