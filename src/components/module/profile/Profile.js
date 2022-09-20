@@ -1,38 +1,21 @@
 import React, { useState, useEffect } from "react";
-import profile from "../assets/profile/profilephoto.svg";
-import editIcon from "../assets/profile/ic-edited-profile.svg";
+import profile from "../../../assets/profile/profilephoto.svg";
+import editIcon from "../../../assets/profile/ic-edited-profile.svg";
 // import Footer from "../footer/Footer"
 import { Button, Modal, Form, Container } from "react-bootstrap";
-import FooterAfter from "../components/module/footer/FooterAfter";
-import ProfileNavbar from "../components/module/profilenavbar/index";
-import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLogin";
-import ProfileNavbarTop from "../components/base/navbar/NavbarProfileTop";
-import "../components/module/profile/profile.css";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { useDidUpdate } from "../custom-hooks/common";
-import { getProfileActionCreator } from "../redux/action/creator/profile";
+import FooterAfter from "../footer/FooterAfter";
+import ProfileNavbar from "../profilenavbar/index";
+import ProfileNavbarTop from "../../base/navbar/NavbarProfileTop";
+import "./profile.css";
 
 const Profile = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const profile = useSelector((state) => state.profile.get, shallowEqual);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProfileActionCreator());
-  }, [profile]);
-
-  useDidUpdate(() => {
-    dispatch(getProfileActionCreator());
-  }, []);
-  console.log(profile);
-
   return (
     <>
-      {/* <ProfileNavbarTop /> */}
-      <NavbarAfterLogin />
-      <div className="container">
+      <ProfileNavbarTop />
+      <div className="">
         <section className="profile ff-airbnb text-center mb-5">
           <div className="d-flex justify-content-center">
             <div className="position-relative">
@@ -77,7 +60,7 @@ const Profile = () => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <button type="submit" className="btn btn-update">
+              <button type="submit" className="btn btn-primary">
                 Update
               </button>
             </Modal.Footer>
