@@ -18,6 +18,7 @@ import { injectStore } from "./utils/http";
 
 injectStore(store)
 
+injectStore(store)
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 

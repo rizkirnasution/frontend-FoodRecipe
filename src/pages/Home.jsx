@@ -1,47 +1,36 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Card from '../components/base/Card/Card'
 import Baner from '../components/module/home/Baner/baner'
 import Footer from '../components/module/home/footer/FooterTopandBottom'
 import Navbar from '../components/module/home/navbar/Navbar'
 import NewRecipe from '../components/module/home/NewRecipe/NewRecipe'
 import Popular from '../components/module/home/popular/Popular';
-import chiken_kare from '../assets/home/chiken_kare.svg';
-import banana_pop from '../assets/home/banana_pop.svg';
-import bomb_chiken from '../assets/home/bomb_chiken.svg';
-import coffe_lava from '../assets/home/coffe_lava.svg';
 import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
 import '../components/module/home/home.css'
+import axios from "axios"
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 
-const data = [
-    {
-        id: 1,
-        src: coffe_lava,
-        title: "coffe",
-    },
-    {
-        id: 2,
-        src: bomb_chiken,
-        title: "coffe",
-    },
-    {
-        id: 3,
-        src: chiken_kare,
-        title: "coffe",
-    },
-    {
-        id: 4,
-        src: chiken_kare,
-        title: "coffe",
-    },
-    {
-        id: 5,
-        src: chiken_kare,
-        title: "coffe",
-    },
+
+
+const Home = () => {
+    const [recipes, setRecipes] = useState([])
+    const dispatch = useDispatch()
+
+    const fetch  = async() =>{
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/recipe`)
+        .catch(err => console.log(err))
+
+        dispatch(setRecipes(response.data.data))
+        console.log(response.data)
+        // return 
+    }
     
-]
-function Home() {
+    console.log(recipes)
+    useEffect(() =>{
+        fetch()
+    }, [])
+
     return (
         <div className='body'>
             <div className="container-fluid custom">
@@ -54,16 +43,17 @@ function Home() {
                             <p>Popular Recipe</p>
                         </div>
                         <div className="row mt-5">
-                            <div className='row row-cols-3 row-cols-sm-3 row-cols-md-4 g-3'>
-                                {data.map((item)=>(
+                            <div className='row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 g-3'>
+                                {recipes.map((item) =>(
                                 <div className="col" key={item.id}>
                                     <Card 
-                                    src={item.src}
-                                    titleName={item.title}
+                                    src={item.thumbnail}
+                                    to={`/detailRecipe/${item.id}`}
+                                    titleName= {item.title}
                                     />
                                 </div>
                                 ))
-                                } 
+                                }  
                             </div>
                         </div>
                     </div>
