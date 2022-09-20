@@ -5,32 +5,99 @@ import Footer from '../components/module/home/footer/FooterTopandBottom'
 import Navbar from '../components/module/home/navbar/Navbar'
 import NewRecipe from '../components/module/home/NewRecipe/NewRecipe'
 import Popular from '../components/module/home/popular/Popular';
+import chiken_kare from '../assets/home/chiken_kare.svg';
+import banana_pop from '../assets/home/banana_pop.svg';
+import bomb_chiken from '../assets/home/bomb_chiken.svg';
+import coffe_lava from '../assets/home/coffe_lava.svg';
 import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
 import '../components/module/home/home.css'
 import axios from "axios"
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+// import { getRecipes }  from '../utils/http'
+import { useDidUpdate } from '../custom-hooks/common'
+import { decode } from 'html-entities'
+import { getRecipeActionCreator } from '../redux/action/creator/recipe'
 
 
 
 
 const Home = () => {
-    const [recipes, setRecipes] = useState([])
-    const dispatch = useDispatch()
-
-    const fetch  = async() =>{
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/recipe`)
-        .catch(err => console.log(err))
-
-        dispatch(setRecipes(response.data.data))
-        console.log(response.data)
-        // return 
-    }
     
-    console.log(recipes)
-    useEffect(() =>{
-        fetch()
+    const dataLimit = 8
+    // const [recipes, setRecipes] = useState([])
+    const [recipesTitle, setRecipesTitle] = useState({})
+
+    const dispatch = useDispatch()
+    const mounted = useRef()
+    const { getRecipes } = useSelector(state => ({
+        getRecipes: state.recipe.get,
+    }), shallowEqual)
+    
+    // const [searchParams] = useSearchParams()
+    // const params = Object.fromEntries([...searchParams])
+    // const navigation = useNavigate()
+    // const onChangePage = (value) => {
+    //     dispatch(getRecipeActionCreator({
+    //         limit: params?.limit || dataLimit,
+    //         page: value
+    //     }))
+    //     navigation(`?page=${value}&limit=${params?.limit || dataLimit}`)
+    // }
+
+    // useEffect(() => {
+    //     if (!mounted.current) {
+    //         dispatch(getRecipeActionCreator({ limit: params?.limit || dataLimit, page: params?.page || 1 }))
+    //         // dispatch(getCategoryActionCreator())
+    //         // dispatch(getUserActionCreator())
+    //         mounted.current = true
+    //     } else {
+    //         if (getRecipes.response) {
+    //             setRecipes(getRecipes?.response.map(value => ({
+    //                 ...value,
+    //                 name: decode(value.name),
+    //                 description: decode(value.description)
+    //             })))
+    //         }
+
+    //         // if (getCategory.response) {
+    //         //     setCategoryInfo(getCategory?.response.map(value => ({
+    //         //         id: value.id,
+    //         //         name: decode(value.name)
+    //         //     })))
+    //         // }
+
+    //         // if (getUser.response) {
+    //         //     setSellerInfo(getUser?.response.map(value => ({
+    //         //         id: value.id,
+    //         //         name: decode(value.name)
+    //         //     })))
+    //         // }
+    //     }
+    // }, [
+    //     getRecipes,
+    //     // getCategory,
+    //     // getUser
+    // ])
+    // console.log(recipes)
+    useDidUpdate(() => {
+            dispatch(getRecipeActionCreator({limit: 4}))
     }, [])
 
+    // const fetch  = async() =>{
+    //     const response = await axios.get(`https://food-recipe-production.up.railway.app/api/v1/recipe`)
+    //     .catch(err => console.log(err))
+
+        
+    //     dispatch(setRecipes(response.data.data))
+    //     console.log(response.data)
+    //     // return 
+    // }
+    
+    // console.log(recipes)
+    // useEffect(() =>{
+    //     fetch()
+    // }, [])
     return (
         <div className='body'>
             <div className="container-fluid custom">
@@ -43,12 +110,11 @@ const Home = () => {
                             <p>Popular Recipe</p>
                         </div>
                         <div className="row mt-5">
-                            <div className='row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 g-3'>
-                                {recipes.map((item) =>(
+                            <div className='row row-cols-3 row-cols-sm-3 row-cols-md-4 g-3'>
+                                {getRecipes.map((item) =>(
                                 <div className="col" key={item.id}>
                                     <Card 
                                     src={item.thumbnail}
-                                    to={`/detailRecipe/${item.id}`}
                                     titleName= {item.title}
                                     />
                                 </div>
