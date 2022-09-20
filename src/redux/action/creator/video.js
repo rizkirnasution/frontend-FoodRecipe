@@ -10,16 +10,12 @@ import {
     deleteVideo
 } from '../../../utils/http'
 
-const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
+export const postVideoActionCreator = createAsyncThunk(postVideoType, async (data, {
     fulfillWithValue,
     rejectWithValue
 }) => {
     try {
-        let request
-
-        if (action.startsWith('put/video')) request = await api(data?.id, data?.value)
-
-        const response = request || await api(data)
+        const response = await postVideo(data)
 
         return fulfillWithValue(response)
     } catch (error) {
@@ -27,6 +23,28 @@ const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
     }
 })
 
-export const postVideoActionCreator = thunkAction(postVideoType, postVideo)
-export const putVideoActionCreator = thunkAction(putVideoType, putVideo)
-export const deleteVideoActionCreator = thunkAction(deleteVideoType, deleteVideo)
+export const putVideoActionCreator = createAsyncThunk(putVideoType, async (data, {
+    fulfillWithValue,
+    rejectWithValue
+}) => {
+    try {
+        const response = await putVideo(data?.id, data?.value)
+
+        return fulfillWithValue(response)
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
+
+export const deleteVideoActionCreator = createAsyncThunk(deleteVideoType, async (data, {
+    fulfillWithValue,
+    rejectWithValue
+}) => {
+    try {
+        const response = await deleteVideo(data)
+
+        return fulfillWithValue(response)
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
