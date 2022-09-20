@@ -17,7 +17,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 // import { getRecipes }  from '../utils/http'
 import { useDidUpdate } from '../custom-hooks/common'
 import { decode } from 'html-entities'
-// import { getRecipeActionCreator } from '../redux/action/creator/recipe'
+import { getRecipeActionCreator } from '../redux/action/creator/recipe'
 
 
 
@@ -25,22 +25,15 @@ import { decode } from 'html-entities'
 const Home = () => {
     
     const dataLimit = 8
-    const [recipes, setRecipes] = useState([])
+    // const [recipes, setRecipes] = useState([])
     const [recipesTitle, setRecipesTitle] = useState({})
 
     const dispatch = useDispatch()
     const mounted = useRef()
-    // const { getRecipes, postRecipe, putRecipe, deleteRecipe } = useSelector(state => ({
-    //     getProduct: state.product.get,
-    // }), shallowEqual)
-    // const { getCategory } = useSelector(state => ({
-    //     getCategory: state.category.get
-    // }), shallowEqual)
+    const { getRecipes } = useSelector(state => ({
+        getRecipes: state.recipe.get,
+    }), shallowEqual)
     
-    // const isPostRecipesFulfilled = postRecipe?.isFulfilled;
-    // const isPutRecipesFulfilled = putRecipe?.isFulfilled;
-    // const isDeleteRecipesFulfilled = deleteRecipe?.isFulfilled;
-
     // const [searchParams] = useSearchParams()
     // const params = Object.fromEntries([...searchParams])
     // const navigation = useNavigate()
@@ -87,35 +80,24 @@ const Home = () => {
     //     // getUser
     // ])
     // console.log(recipes)
-    // useDidUpdate(() => {
-    //     if (
-    //         isPostRecipesFulfilled ||
-    //         isPutRecipesFulfilled ||
-    //         isDeleteRecipesFulfilled
-    //     ) {
-    //         // dispatch(getRecipeActionCreator({ limit: params?.limit || dataLimit, page: params?.page || 1 }))
-            
-    //     }
-    // }, [
-    //     isPostRecipesFulfilled,
-    //     isPutRecipesFulfilled,
-    //     isDeleteRecipesFulfilled
-    // ])
+    useDidUpdate(() => {
+            dispatch(getRecipeActionCreator({limit: 4}))
+    }, [])
 
-    const fetch  = async() =>{
-        const response = await axios.get(`https://food-recipe-production.up.railway.app/api/v1/recipe`)
-        .catch(err => console.log(err))
+    // const fetch  = async() =>{
+    //     const response = await axios.get(`https://food-recipe-production.up.railway.app/api/v1/recipe`)
+    //     .catch(err => console.log(err))
 
         
-        dispatch(setRecipes(response.data.data))
-        console.log(response.data)
-        // return 
-    }
+    //     dispatch(setRecipes(response.data.data))
+    //     console.log(response.data)
+    //     // return 
+    // }
     
-    console.log(recipes)
-    useEffect(() =>{
-        fetch()
-    }, [])
+    // console.log(recipes)
+    // useEffect(() =>{
+    //     fetch()
+    // }, [])
     return (
         <div className='body'>
             <div className="container-fluid custom">
@@ -129,7 +111,7 @@ const Home = () => {
                         </div>
                         <div className="row mt-5">
                             <div className='row row-cols-3 row-cols-sm-3 row-cols-md-4 g-3'>
-                                {recipes.map((item) =>(
+                                {getRecipes.map((item) =>(
                                 <div className="col" key={item.id}>
                                     <Card 
                                     src={item.thumbnail}

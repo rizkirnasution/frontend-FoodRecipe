@@ -12,13 +12,12 @@ import {
     deleteBookmark
 } from '../../../utils/http'
 
-const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
+export const getBookmarkActionCreator = createAsyncThunk(getBookmarkType, async (data, {
     fulfillWithValue,
     rejectWithValue
 }) => {
     try {
-
-        const response = await api(data)
+        const response = await getBookmarks(data)
 
         return fulfillWithValue(response)
     } catch (error) {
@@ -26,7 +25,41 @@ const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
     }
 })
 
-export const getBookmarkActionCreator = thunkAction(getBookmarkType, getBookmarks)
-export const getBookmarkByUserIdActionCreator = thunkAction(getBookmarkByUserIdType, getBookmarkByUserId)
-export const postBookmarkActionCreator = thunkAction(postBookmarkType, postBookmark)
-export const deleteBookmarkActionCreator = thunkAction(deleteBookmarkType, deleteBookmark)
+export const getBookmarkByUserIdActionCreator = createAsyncThunk(getBookmarkByUserIdType, async (data, {
+    fulfillWithValue,
+    rejectWithValue
+}) => {
+    try {
+        const response = await getBookmarkByUserId(data)
+
+        return fulfillWithValue(response)
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
+
+export const postBookmarkActionCreator = createAsyncThunk(postBookmarkType, async (data, {
+    fulfillWithValue,
+    rejectWithValue
+}) => {
+    try {
+        const response = await postBookmark(data)
+
+        return fulfillWithValue(response)
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})
+
+export const deleteBookmarkActionCreator = createAsyncThunk(deleteBookmarkType, async (data, {
+    fulfillWithValue,
+    rejectWithValue
+}) => {
+    try {
+        const response = await deleteBookmark(data)
+
+        return fulfillWithValue(response)
+    } catch (error) {
+        return rejectWithValue(error)
+    }
+})

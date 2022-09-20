@@ -7,7 +7,7 @@ import profile from './profile'
 import liker from './liker'
 import bookmark from './bookmark'
 
-const mainReducer = {
+const appReducer = combineReducers({
     auth,
     recipe,
     category,
@@ -15,8 +15,7 @@ const mainReducer = {
     profile,
     liker,
     bookmark
-}
-const appReducer = combineReducers(mainReducer)
+})
 const rootReducer = (state, action) => {
     if (action.type === 'logout/auth/fulfilled') {
         state = {}
