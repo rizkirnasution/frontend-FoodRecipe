@@ -16,16 +16,16 @@ const Profile = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const profile = useSelector((state) => state.profile.get, shallowEqual);
-  const dispatch = useDispatch();
+  // const profile = useSelector((state) => state.profile.get, shallowEqual);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getProfileActionCreator());
-  }, [profile]);
+  // useEffect(() => {
+  //   dispatch(getProfileActionCreator());
+  // }, [profile]);
 
-  useDidUpdate(() => {
-    dispatch(getProfileActionCreator());
-  }, []);
+  // useDidUpdate(() => {
+  //   dispatch(getProfileActionCreator());
+  // }, []);
 
   return (
     <>
