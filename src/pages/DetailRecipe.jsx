@@ -44,22 +44,7 @@ function Detail() {
         </div>
         <div className="my-4">
           <h3>Video Step</h3>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
+          <div href>
             <button className="btn btn-warning mb-3">
               <img src={play} />
             </button>

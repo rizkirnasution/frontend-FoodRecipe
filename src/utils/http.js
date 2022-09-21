@@ -51,7 +51,7 @@ axiosInstance.interceptors.response.use(
     if (
       originalRequest.url.includes("/auth/refresh-token") &&
       error?.response?.status === 412 &&
-      (error?.response?.data?.data?.message === "Session unavailable" || error?.response?.data?.data?.message === "Refresh token must be conditioned")
+      (error?.response?.data?.data?.message === "Refresh token unavailable" || error?.response?.data?.data?.message === "Refresh token must be conditioned")
     ) {
       localStorage.clear();
       history.replace("/auth");
@@ -62,7 +62,7 @@ axiosInstance.interceptors.response.use(
     if (
       !originalRequest.url.includes("/auth/refresh-token") &&
       error?.response?.status === 401 &&
-      (error?.response?.data.data.message === "jwt expired" || error?.response?.data?.data?.message === "Session unavailable") &&
+      (error?.response?.data.data.message === "jwt expired" || error?.response?.data?.data?.message === "Session unavailable" || error?.response?.data?.data?.message === "Bearer token must be conditioned") &&
       !originalRequest?._retry
     ) {
       try {

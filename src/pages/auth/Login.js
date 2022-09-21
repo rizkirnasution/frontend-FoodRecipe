@@ -1,6 +1,6 @@
 import "./login.css";
-import React, { Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import logo from "../../assets/auth/login/logo.svg";
 import { loginActionCreator } from "../../redux/action/creator/auth";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
@@ -14,7 +14,9 @@ import { Helmet } from "react-helmet-async";
 const { REACT_APP_NAME } = process.env;
 
 const Login = () => {
+  const [searchParams] = useSearchParams();
   const auth = useSelector((state) => state.auth, shallowEqual);
+  const registerState = useSelector((state) => state.register, shallowEqual);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -60,6 +62,12 @@ const Login = () => {
       navigate("/home");
     }
 
+    if (auth.register?.isFulfilled) {
+      toast.dismiss();
+
+      toastId.current = toast.success("Account activation succeed, Please login to continue", toastOptions);
+    }
+
     if (errors.email) {
       toast.dismiss(toastId.current);
 
@@ -80,65 +88,30 @@ const Login = () => {
       </Helmet>
       <div className="d-flex align-items-center justify-content-center">
         <div className="d-none d-lg-flex backdrop-login column justify-content-center">
-          <img
-            className="d-flex align-self-center justify-content-center"
-            src={logo}
-            alt="Logo"
-          />
+          <img className="d-flex align-self-center justify-content-center" src={logo} alt="Logo" />
         </div>
         <div className="container">
           <div className="column d-flex align-items-center justify-content-center my-5 py-4">
-            <form
-              className="login text-center"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className="login text-center" onSubmit={handleSubmit(onSubmit)}>
               <h1 className="text-center title-text">
                 <b>Welcome</b>
               </h1>
-              <p className="subtitle-text text-center my-4">
-                Login into your existing account
-              </p>
+              <p className="subtitle-text text-center my-4">Login into your existing account</p>
               <label className="inputLabelText" htmlFor="email">
                 E-mail
               </label>
-              <input
-                type="email"
-                name="email"
-                className="login form-control my-2 mb-4"
-                disabled={auth.login?.isPending}
-                placeholder="email"
-                {...register("email")}
-              />
+              <input type="email" name="email" className="login form-control my-2 mb-4" disabled={auth.login?.isPending} placeholder="email" {...register("email")} />
               <label className="inputLabelText" htmlFor="password">
                 Password
               </label>
-              <input
-                type="password"
-                name="password"
-                className="login form-control my-2"
-                disabled={auth.login?.isPending}
-                placeholder="Password"
-                {...register("password")}
-              />
+              <input type="password" name="password" className="login form-control my-2" disabled={auth.login?.isPending} placeholder="Password" {...register("password")} />
               <div className="form-check mt-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="flexCheckDefault"
-                  required
-                />
-                <label
-                  className="form-check-label float-start terms-and-conditions-text mb-4"
-                  htmlFor="flexCheckDefault"
-                >
+                <input className="form-check-input" type="checkbox" id="flexCheckDefault" required />
+                <label className="form-check-label float-start terms-and-conditions-text mb-4" htmlFor="flexCheckDefault">
                   I agree with terms &#38; conditions
                 </label>
               </div>
-              <button
-                type="submit"
-                className="btn btn-warning submit text-white w-100 mt-3"
-                disabled={auth.login?.isPending}
-              >
+              <button type="submit" className="btn btn-warning submit text-white w-100 mt-3" disabled={auth.login?.isPending}>
                 Login
               </button>
               <div className="mb-4">
