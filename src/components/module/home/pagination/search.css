@@ -9,6 +9,11 @@
     border: 2px solid transparent;
     background: #EFC81A;
 }
+.btn-yellow{
+    width: 165px !important;
+
+}
+
 .input-search{
     border-radius: 15px !important;
 }
