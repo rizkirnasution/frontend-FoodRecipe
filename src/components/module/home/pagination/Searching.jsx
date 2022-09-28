@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 
 function Searching() {
   const [searchParams1, setSearchParams1] = useSearchParams();
-
   const [sort1, setSort1] = useState("");
   const [search1, setSearch1] = useState("");
   const [recipes, setRecipes] = useState([]);

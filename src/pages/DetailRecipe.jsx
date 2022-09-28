@@ -12,39 +12,14 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 
 function Detail() {
-  const [recipes, setRecipes] = useState([]);
-  const dispatch = useDispatch();
-
-  const fetch = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/recipe`).catch((err) => console.log(err));
-
-    dispatch(setRecipes(response.data.data));
-    console.log(response.data);
-    // return
-  };
-
-  console.log(recipes[1].title);
-  useEffect(() => {
-    fetch();
-  }, []);
-
-  const ingredientSplit = recipes[1].ingredient.split("\n");
-  console.log(ingredientSplit);
-  const list = [];
-
-  ingredientSplit.forEach((i) => {
-    list.push(<li>{i}</li>);
-  });
-  console.log(list);
-
   return (
     <>
       <NavbarAfterLogin />
       <div className="small-middle-container">
         <div className="content my-3">
-          <h1 className="text-center">{recipes[1].title}</h1>
+          <h1 className="text-center">Loream Sandwich</h1>
           <div class="gallerypic">
-            <img src={recipes[1].thumbnail} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
+            <img src={pic} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
             <span class="bookmark">
               <a href="#">
                 <img src={Like} alt="bookmark" className="icon" />
@@ -59,7 +34,15 @@ function Detail() {
         </div>
         <div className="my-4">
           <h3>Ingredients</h3>
-          {list}
+          <ul>
+            <li>2 Eggs</li>
+            <li>2 Tbsp</li>
+            <li>3 Slices Bread</li>
+            <li>A Little Butter</li>
+            <li>1/3 Carton Of Cress</li>
+            <li>2-3 Slices Of Tomato Or A Lettuce Leaf And A Slice Of Ham Or Cheese</li>
+            <li>Crisps, To Serve</li>
+          </ul>
         </div>
         <div className="my-4">
           <h3>Video Step</h3>
