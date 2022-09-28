@@ -1,119 +1,124 @@
+
 @font-face {
   font-family: "Airbnb";
-  src: url("../../../assets/fonts/airbnb.woff2");
+  src: 
+  url('../../../assets/fonts/airbnb.woff2');
   font-display: swap;
   font-weight: bold;
 }
 @font-face {
   font-family: "Airbnb_bold";
-  src: url("../../../assets/fonts/AirbnbCereal_W_Bd.otf");
+  src:
+  url('../../../assets/fonts/AirbnbCereal_W_Bd.otf');
+  
 }
-* {
+*{
   padding: 0;
   margin: 0;
 }
 
-.body {
-  background-color: #fff5ec !important;
-  font-family: "Airbnb" !important;
+.body{
+  background-color: #FFF5EC !important;
+  font-family: "Airbnb"  !important;
 }
 
-.custom {
+.custom{
   width: 100%;
 }
 
-.const-icon {
+.const-icon{
   width: 30px;
 }
 
-.icon-search {
+.icon-search{
   margin-left: 15px;
 }
 
-.popular {
+
+.popular{
   margin-top: 200px !important;
   width: 600px !important;
 }
 
-.popular::before {
+.popular::before{
   content: "";
   width: 20px;
   height: 140px;
   display: block;
-  background: #efc81a;
+  background: #EFC81A;
 }
 
-.popular::before {
+.popular::before{
   margin-left: -5%;
   margin-top: -20%;
 }
 
 .popular p {
   font-size: 48px;
-  color: #2e266f;
+  color: #2E266F;
   margin-top: -20%;
 }
 
-.elips {
+.elips{
   margin-top: 10%;
   margin-left: -19% !important;
 }
 
-.img_popular {
-  margin-left: -5%;
+.img_popular{
+  margin-left: -5% ;
   display: flex;
   gap: 20px;
 }
-.img_popular img {
+.img_popular img{
   width: 40%;
 }
 
-.bg-elips {
+.bg-elips{
   display: flex;
   justify-content: end;
   margin-right: 28%;
-  margin-top: -26%;
+  margin-top: -26% ;
 }
-.new-recipe {
+.new-recipe{
   margin-top: 300px !important;
 }
-.img-recipe {
+.img-recipe{
   margin-top: 150px;
 }
 
-.img-recipe::before {
+.img-recipe::before{
   content: "";
   width: 290px;
   height: 450px;
   display: block;
-  background: #efc81a;
+  background: #EFC81A;
 }
 
-.img-recipe::before {
+.img-recipe::before{
   margin-left: -10%;
   margin-top: -4%;
 }
 
-.img-recipe img {
+.img-recipe img{
   margin-top: -400px;
   margin-left: 5%;
   width: 440px;
   /* height: 800px; */
 }
 
-.text-recipe {
+.text-recipe{
   margin-left: -80px;
 }
 
-.text-recipe h1 {
-  color: #3f3a3a;
+.text-recipe h1{
+  color: #3F3A3A;
   font-family: "Airbnb";
   font-weight: 100 !important;
   font-size: 30px;
   margin-top: 90px;
 }
 
-.text-recipe h1::after {
+.text-recipe h1::after{
   content: "";
   width: 100px;
   height: 1px;
@@ -126,65 +131,66 @@
   font-family: "Airbnb";
   font-size: 16px;
   width: 400px;
-  color: #3f3a3a;
+  color: #3F3A3A;
 }
-.text-recipe button {
+.text-recipe button{
   width: 150px !important;
 }
-.popular-recipe {
+.popular-recipe{
   margin-top: 300px;
 }
 
+
 @media screen and (max-width: 991px) {
   /* .custom{
-        width: 100%  !important;
-    } */
-  .navbar-brand {
-    display: block !important;
+      width: 100%  !important;
+  } */
+  .navbar-brand{
+      display: block !important;
   }
-  .container_img::before {
-    display: none;
+  .container_img::before{
+      display: none;
   }
-  .img_popular {
-    margin-left: -2%;
+  .img_popular{
+      margin-left: -2%;
   }
-  .popular-recipe {
-    margin: auto !important;
+  .popular-recipe{
+      margin: auto !important;
   }
-  .new-recipe {
-    margin-left: 5px !important;
+  .new-recipe{
+      margin-left: 5px !important;
   }
-  .popular {
-    margin-left: 15px !important;
+  .popular{
+      margin-left: 15px !important;
   }
-  .icon-search {
-    width: 30px !important;
-    /* background: red; */
+  .icon-search{
+      width: 30px !important;
+      /* background: red; */
   }
-  .conts.icon {
-    width: 30px !important;
+  .conts.icon{
+      width: 30px !important;
   }
-  .text-recipe {
-    margin-left: 0px !important;
+  .text-recipe{
+      margin-left: 0px !important;
   }
-  .new-recipe {
-    display: flex !important;
-    flex-direction: column;
+  .new-recipe{
+      display: flex !important;
+      flex-direction: column ;
   }
-  .text-recipe {
-    margin-left: -50px !important;
-    width: 100% !important;
+  .text-recipe{
+      margin-left: -50px !important;
+      width: 100% !important;
   }
-  .text-recipe h1 {
-    width: 100% !important;
+  .text-recipe h1{
+      width: 100% !important;
   }
 }
 
-@media screen and (max-width: 576px) {
-  .text-recipe {
-    margin-left: 0px !important;
+@media screen and (max-width: 576px){
+  .text-recipe{
+      margin-left: 0px !important;
   }
-  .body {
-    overflow-x: hidden;
+  .body{
+      overflow-x: hidden;
   }
 }

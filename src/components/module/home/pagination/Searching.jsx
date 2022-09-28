@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom'
-import "./search.css"
+import "./search.css";
 import banana_pop from '../../../../assets/home/banana_pop.svg';
 import Footer from "../footer/FooterTopandBottom"
 import { Dropdown } from "react-bootstrap";
 import axios from "axios"
-import CardSearch from '../../../base/Card/Card'
+import CardSearch from '../../../base/Card/CardSearch'
 import { useDispatch } from 'react-redux';
 
 
