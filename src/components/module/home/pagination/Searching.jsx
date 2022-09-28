@@ -5,7 +5,7 @@ import banana_pop from '../../../../assets/home/banana_pop.svg';
 import Footer from "../footer/FooterTopandBottom"
 import { Dropdown } from "react-bootstrap";
 import axios from "axios"
-import CardSearch from '../../../base/Card/CardSearch'
+import CardSearch from '../../../base/Card/Card'
 import { useDispatch } from 'react-redux';
 
 
