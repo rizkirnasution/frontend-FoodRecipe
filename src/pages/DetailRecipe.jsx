@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import pic from "../assets/detailRecipe/photo.svg";
 import play from "../assets/detailRecipe/play.svg";
 import "../components/module/detailrecipe/detailrecipe.css";
@@ -8,6 +8,8 @@ import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLog
 import Footer from "../components/module/footer/Footer";
 import Like from "../assets/detailRecipe/ic-likes.svg";
 import Bookmark from "../assets/detailRecipe/ic-bookmark.svg";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 
 function Detail() {
   return (
@@ -44,26 +46,11 @@ function Detail() {
         </div>
         <div className="my-4">
           <h3>Video Step</h3>
-          <div>
+          <a href="./DetailVideoRecipe">
             <button className="btn btn-warning mb-3">
               <img src={play} />
             </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
+          </a>
         </div>
         <div>
           <label for="exampleFormControlTextarea1" class="form-label">

@@ -1,32 +1,33 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import {
-    postVideoType,
-    putVideoType,
-    deleteVideoType
-} from '../type/video'
-import {
-    postVideo,
-    putVideo,
-    deleteVideo
-} from '../../../utils/http'
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { postVideoType, putVideoType, deleteVideoType } from "../type/video";
+import { postVideo, putVideo, deleteVideo } from "../../../utils/http";
 
-const thunkAction = (action, api) => createAsyncThunk(action, async (data, {
-    fulfillWithValue,
-    rejectWithValue
-}) => {
-    try {
-        let request
+export const postVideoActionCreator = createAsyncThunk(postVideoType, async (data, { fulfillWithValue, rejectWithValue }) => {
+  try {
+    const response = await postVideo(data);
 
-        if (action.startsWith('put/video')) request = await api(data?.id, data?.value)
+    return fulfillWithValue(response);
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
 
-        const response = request || await api(data)
+export const putVideoActionCreator = createAsyncThunk(putVideoType, async (data, { fulfillWithValue, rejectWithValue }) => {
+  try {
+    const response = await putVideo(data?.id, data?.value);
 
-        return fulfillWithValue(response)
-    } catch (error) {
-        return rejectWithValue(error)
-    }
-})
+    return fulfillWithValue(response);
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
 
-export const postVideoActionCreator = thunkAction(postVideoType, postVideo)
-export const putVideoActionCreator = thunkAction(putVideoType, putVideo)
-export const deleteVideoActionCreator = thunkAction(deleteVideoType, deleteVideo)
+export const deleteVideoActionCreator = createAsyncThunk(deleteVideoType, async (data, { fulfillWithValue, rejectWithValue }) => {
+  try {
+    const response = await deleteVideo(data);
+
+    return fulfillWithValue(response);
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
