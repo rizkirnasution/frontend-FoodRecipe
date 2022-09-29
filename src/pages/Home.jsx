@@ -10,28 +10,57 @@ import '../components/module/home/home.css'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useDidUpdate } from '../custom-hooks/common';
 import { getRecipeActionCreator } from '../redux/action/creator/recipe';
+import NavbarAfterLogin from '../components/module/home/navbar/NavbarAfterLogin';
+import { toast } from "react-toastify";
+
+
 
 const Home = () => {
+    const logout = useSelector(state => state.auth.logout, shallowEqual)
+    const login = useSelector((state) => state.auth.login);
+    const token = localStorage.getItem("@acc_token")
     const [recipes, setRecipes] = useState([])
     const dispatch = useDispatch()
     const getAll = useSelector(state => state.recipe.get, shallowEqual)
-
+    console.log(logout)
+    console.log(login)
     useEffect(() =>{
         dispatch(getRecipeActionCreator({
             limit: 10
         }))
     }, [])
 
+    const toastId = React.useRef(null);
     useDidUpdate(() =>{
+
+        //   const toastOptions = {
+        //     position: "bottom-center",
+        //     autoClose: 5000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //   };
+        //   if(logout?.isFulfilled){
+        //     toast.dismiss();
+        
+        //     toast.success("Logout Success", toastOptions);
+        //   }
         if(getAll?.isFulfilled){
             setRecipes(getAll?.response)
+
         }
+        
     }, [getAll])
     
     return (
         <div className='body'>
         <div className="container-fluid custom">
-            <Navbar />
+            {token == null ?
+            <Navbar /> :
+            <NavbarAfterLogin/> 
+        }
             <Baner />
             <Popular />
             <NewRecipe />    
