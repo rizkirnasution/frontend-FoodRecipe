@@ -15,7 +15,7 @@ const duration = new Duration(REACT_APP_REQUEST_TIMEOUT);
 
 axiosInstance.defaults.baseURL = REACT_APP_BACKEND_URL;
 axiosInstance.defaults.timeout = duration.milliseconds();
-axiosInstance.defaults.withCredentials = true;
+// axiosInstance.defaults.withCredentials = true;
 axiosInstance.defaults.paramsSerializer = (params) =>
   qs.stringify(params, {
     arrayFormat: "brackets",
@@ -104,9 +104,9 @@ export const getRecipes = async (filterRecipe = {}) => {
   const isRecipeFiltered = Object.keys(filterRecipe).length;
 
   if (isRecipeFiltered) {
-    await axiosInstance.get(RECIPE_PATH, queryParams(filterRecipe));
+    return await axiosInstance.get(RECIPE_PATH, queryParams(filterRecipe));
   } else {
-    await axiosInstance.get(RECIPE_PATH);
+   return await axiosInstance.get(RECIPE_PATH);
   }
 };
 export const getRecipeById = async (recipeId = "") => await axiosInstance.get(`${RECIPE_PATH}/${recipeId}`);
@@ -128,9 +128,9 @@ export const getLikers = async (filterLiker = {}) => {
   const isLikerFiltered = Object.keys(filterLiker).length;
 
   if (isLikerFiltered) {
-    await axiosInstance.get(LIKER_PATH, queryParams(filterLiker));
+    return await axiosInstance.get(LIKER_PATH, queryParams(filterLiker));
   } else {
-    await axiosInstance.get(LIKER_PATH);
+    return await axiosInstance.get(LIKER_PATH);
   }
 };
 export const getLikerByUserId = async (userId = "") => await axiosInstance.get(`${LIKER_PATH}/user/${userId}`);
@@ -141,9 +141,9 @@ export const getBookmarkers = async (filterBookmark = {}) => {
   const isBookmarkFiltered = Object.keys(filterBookmark).length;
 
   if (isBookmarkFiltered) {
-    await axiosInstance.get(BOOKMARK_PATH, queryParams(filterBookmark));
+    return await axiosInstance.get(BOOKMARK_PATH, queryParams(filterBookmark));
   } else {
-    await axiosInstance.get(BOOKMARK_PATH);
+    return await axiosInstance.get(BOOKMARK_PATH);
   }
 };
 export const getBookmarkByUserId = async (userId = "") => await axiosInstance.get(`${BOOKMARK_PATH}/user/${userId}`);
