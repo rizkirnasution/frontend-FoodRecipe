@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import play from "../assets/detailRecipe/play.svg";
 import "../components/module/detailrecipe/detailrecipe.css";
 import comment from "../assets/detailRecipe/comment.png";
@@ -6,30 +6,27 @@ import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLog
 import Footer from "../components/module/footer/Footer";
 import Like from "../assets/detailRecipe/ic-likes.svg";
 import Bookmark from "../assets/detailRecipe/ic-bookmark.svg";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { getRecipeByIdActionCreator } from "../redux/action/creator/recipe";
 
 function Detail() {
   const { REACT_APP_NAME } = process.env;
-  const [recipes, setRecipes] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
-
-  const fetch = async () => {
-    const response = await axios.get(`http://localhost:8080/api/v1/recipe/${id}`).catch((err) => console.log(err));
-
-    dispatch(setRecipes(response.data.data));
-    console.log(response.data.data);
-  };
+  const recipe = useSelector((state) => state.recipe.getById, shallowEqual);
+  const [detailRecipe, setDetailRecipe] = useState({});
+  const isMounted = useRef();
 
   useEffect(() => {
-    fetch();
-  }, []);
-
-  // const splitIngredient = recipes.ingredient.split("\n");
-  // console.log(splitIngredient);
+    if (!isMounted.current) {
+      dispatch(getRecipeByIdActionCreator(id));
+      isMounted.current = true;
+    } else {
+      setDetailRecipe(recipe?.response);
+    }
+  }, [recipe]);
 
   return (
     <>
@@ -39,9 +36,9 @@ function Detail() {
       <NavbarAfterLogin />
       <div className="small-middle-container">
         <div className="content my-3">
-          <h1 className="text-center">{recipes.title}</h1>
+          <h1 className="text-center">{detailRecipe?.title}</h1>
           <div class="gallerypic">
-            <img src={recipes.thumbnail} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
+            <img src={detailRecipe?.thumbnail} height="450" width="600" alt={detailRecipe?.title} className="pic img-fluid" />
             <span class="like">
               <div>
                 <img src={Like} alt="like" className="icon" />
@@ -56,7 +53,7 @@ function Detail() {
         </div>
         <div className="my-4">
           <h3>Ingredients</h3>
-          {recipes.ingredient}
+          {detailRecipe?.ingredient}
 
           {/* <ul>
             {splitIngredient.map((item) => (
