@@ -5,7 +5,7 @@ import "./card.css"
 
 function Card({src, titleName, to}) {
   return (
-    <div className="mb-5 d-flex justify-content-evenly g-4 imagination">
+    <div className="">
         <Link className="link" to={to}>
         <div className="card4">
             <div className='card2'>

@@ -48,6 +48,7 @@ const recipeReducer = createReducer(initialState, (builder) => {
                 } : data
 
                 state[type[0]] = data
+                console.log(data)
             }
         )
 })
