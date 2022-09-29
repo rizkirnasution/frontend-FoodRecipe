@@ -1,3 +1,8 @@
+
+.bg-navbar{
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
 .a-search {
     display: inline;
     text-decoration: none !important;
@@ -65,9 +70,10 @@ input[type="search"]:focus
 @media screen and (max-width: 991px){
     .form-search{
         width: 100% !important;
+        background: red;
     }
-    .search-container{
+    /* .search-container{
         margin-left: 20px;
         margin-top: 20px;
-    }
+    } */
 }

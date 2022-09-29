@@ -5,10 +5,10 @@ import "./cardSearch.css"
 
 function CardSearch({src, titleName, to}) {
   return (
-    <div className="mb-5 d-flex justify-content-evenly  g-4 imagination">
+    <div className="mb-2">
         <Link className="link" to={to}>
-        <div className="card">
-            <div className='card1'>
+        <div className="card9">
+            <div className='card4 '>
               <img src={src} className="img" alt="picture" />
               <div className="card-body">
                 <h5 className="card-title">
