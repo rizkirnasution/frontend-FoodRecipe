@@ -1,13 +1,14 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import user_icon from '../../../../assets/home/User-icon.svg' 
+import { logoutActionCreator } from '../../../../redux/action/creator/auth';
 import './navbar.css'
 
 
-function Navbar() {
-  const test = useSelector((state) => state.auth.login.isFulfilled);
-  console.log(test)
+
+function NavbarAfterLogin() {
+    const dispacth = useDispatch()
   return (
     <div className="container">
         <nav className="navbar  navbar-expand-lg bg-transaparent sticky-top">
@@ -44,20 +45,28 @@ function Navbar() {
                         <span></span>
                     </div>
                     {
+                        localStorage.getItem("@acc_token") && (
 
+                        <div
+                        className='text-decoration-none login'>
+                        <p className='m-auto ms-2 '><span 
+                            
+                        className='text-decoration-none text-white'
+                        ><button
+                        className='bg-transparent border-0 text-white me-2'
+                        onClick={() => dispacth(logoutActionCreator())}
+
+                        >Logout</button></span></p>
+                        </div>
+                        )
                     }
-                    <Link to="/login" className='text-decoration-none login'>
-                       <p className='m-auto ms-2 '><a href="#" className='text-decoration-none text-white me-2'>Login</a></p>
-                    </Link>
                    
                 </div>
             </div>
         </div>
     </nav>
     </div>
-    
-
   )
 }
 
-export default Navbar
+export default NavbarAfterLogin

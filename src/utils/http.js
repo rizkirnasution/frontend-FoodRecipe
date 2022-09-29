@@ -15,7 +15,7 @@ const duration = new Duration(REACT_APP_REQUEST_TIMEOUT);
 
 axiosInstance.defaults.baseURL = REACT_APP_BACKEND_URL;
 axiosInstance.defaults.timeout = duration.milliseconds();
-// axiosInstance.defaults.withCredentials = true;
+axiosInstance.defaults.withCredentials = true;
 axiosInstance.defaults.paramsSerializer = (params) =>
   qs.stringify(params, {
     arrayFormat: "brackets",
@@ -50,18 +50,18 @@ axiosInstance.interceptors.response.use(
 
     if (
       originalRequest.url.includes("/auth/refresh-token") &&
-      error?.response?.status === 412 &&
-      (error?.response?.data?.data?.message === "Refresh token unavailable" || error?.response?.data?.data?.message === "Refresh token must be conditioned")
+      // error?.response?.status === 412 &&
+      (error?.response?.data.data.message === "jwt expired" || error?.response?.data?.data?.message === "Refresh token unavailable" || error?.response?.data?.data?.message === "Refresh token must be conditioned")
     ) {
       localStorage.clear();
-      history.replace("/auth");
+      history.replace("/home");
 
       return Promise.reject();
     }
 
     if (
       !originalRequest.url.includes("/auth/refresh-token") &&
-      error?.response?.status === 401 &&
+      // error?.response?.status === 401 &&
       (error?.response?.data.data.message === "jwt expired" || error?.response?.data?.data?.message === "Session unavailable" || error?.response?.data?.data?.message === "Bearer token must be conditioned") &&
       !originalRequest?._retry
     ) {
