@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import pic from "../assets/detailRecipe/photo.svg";
 import play from "../assets/detailRecipe/play.svg";
 import "../components/module/detailrecipe/detailrecipe.css";
 import comment from "../assets/detailRecipe/comment.png";
@@ -29,8 +28,9 @@ function Detail() {
     fetch();
   }, []);
 
-  const splitIngredient = recipes.ingredient.split("\n");
-  console.log(splitIngredient);
+  // const splitIngredient = recipes.ingredient.split("\n");
+  // console.log(splitIngredient);
+
   return (
     <>
       <Helmet>
@@ -56,11 +56,13 @@ function Detail() {
         </div>
         <div className="my-4">
           <h3>Ingredients</h3>
-          <ul>
+          {recipes.ingredient}
+
+          {/* <ul>
             {splitIngredient.map((item) => (
               <li className="list">{item}</li>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <div className="my-4">
           <h3>Video Step</h3>
