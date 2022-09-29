@@ -1,32 +1,44 @@
 @font-face {
-    font-family: "Airbnb";
-    src: url(../../../assets//fonts/airbnb.woff2);
-    font-display: swap;
-  }
-  .ff-airbnb {
-    font-family: "Airbnb", sans-serif;
-  }
+  font-family: "Airbnb";
+  src: url(../../../assets//fonts/airbnb.woff2);
+  font-display: swap;
+}
+
+body {
+  font-family: "Airbnb";
+}
+
+.ff-airbnb {
+  font-family: "Airbnb", sans-serif;
+}
 .profile {
-    margin: 0 auto;
-    margin-top: 120px;
-    max-width: 800px;
-  }
-  
-  .profile .icon {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-  
-  .profile .icon:hover {
-    cursor: pointer;
-  }
-  
-  .profile .picture {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-  }
-  .btn > .btn-update{
-    background-color: #EFC81A !important;
-  }
+  margin: 0 auto;
+  margin-top: 120px;
+  max-width: 800px;
+}
+
+.profile .icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.profile .icon:hover {
+  cursor: pointer;
+}
+
+.profile .picture {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.btn .btn-update {
+  background-color: #efc81a !important;
+}
+
+.button-add,
+.button-close {
+  width: 100px !important;
+  height: 40px !important;
+  margin-bottom: 1rem;
+}

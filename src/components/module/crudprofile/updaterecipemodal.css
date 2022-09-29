@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Airbnb";
+  src: url("../../../assets/fonts/airbnb.woff2");
+  font-display: swap;
+  font-weight: bold;
+}
+
+body {
+  font-family: "Airbnb";
+}
+
+.button-add,
+.button-close {
+  width: 100px !important;
+  height: 40px !important;
+  margin-bottom: 1rem;
+}
