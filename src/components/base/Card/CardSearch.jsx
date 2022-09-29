@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./card.css"
+import "./cardSearch.css"
 
 
-function Card({src, titleName, to}) {
+function CardSearch({src, titleName, to}) {
   return (
-    <div className="mb-5 d-flex justify-content-evenly g-4 imagination">
+    <div className="mb-5 d-flex justify-content-evenly  g-4 imagination">
         <Link className="link" to={to}>
-        <div className="card4">
-            <div className='card2'>
+        <div className="card">
+            <div className='card1'>
               <img src={src} className="img" alt="picture" />
               <div className="card-body">
                 <h5 className="card-title">
@@ -23,4 +23,4 @@ function Card({src, titleName, to}) {
   )
 }
 
-export default Card
+export default CardSearch

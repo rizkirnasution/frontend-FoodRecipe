@@ -11,16 +11,12 @@ import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "./router/browserHistory";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
+import { injectStore } from "./utils/http";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
-import { injectStore } from "./utils/http";
-
-injectStore(store)
 
 injectStore(store)
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 
 const { REACT_APP_NAME } = process.env;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import pic from "../assets/detailRecipe/photo.svg";
 import play from "../assets/detailRecipe/play.svg";
 import "../components/module/detailrecipe/detailrecipe.css";
@@ -7,73 +7,28 @@ import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLog
 import Footer from "../components/module/footer/Footer";
 import Like from "../assets/detailRecipe/ic-likes.svg";
 import Bookmark from "../assets/detailRecipe/ic-bookmark.svg";
-import { Helmet } from "react-helmet-async";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { likerPostModel } from "../utils/schema";
-import { useDidUpdate } from "../custom-hooks/common";
-// import { postLikerActionCreator } from "../redux/action/creator/liker";
-import { toast } from "react-toastify";
-import { image } from "fontawesome";
-import { createFormData } from "../utils/form-data";
-
-const { REACT_APP_NAME } = process.env;
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Detail() {
-  const liker = useSelector((state) => state.liker, shallowEqual);
+  const [recipes, setRecipes] = useState([]);
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(likerPostModel),
-  });
-  const onSubmit = (value) => {
-    const files = {
-      picture: image,
-    };
-    createFormData(files, value);
-    // dispatch(postLikerActionCreator(value));
+
+  const fetch = async () => {
+    const response = await axios.get(`http://localhost:8080/api/v1/recipe/${id}`).catch((err) => console.log(err));
+
+    dispatch(setRecipes(response.data.data));
+    console.log(response.data.data);
+    // return
   };
-  const toastId = React.useRef(null);
 
-  useDidUpdate(() => {
-    const toastOptions = {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    };
+  console.log(recipes);
+  useEffect(() => {
+    fetch();
+  }, []);
 
-    if (liker.post?.isPending) {
-      toast.dismiss();
-
-      toastId.current = toast.loading("Loading...", toastOptions);
-    }
-
-    if (liker.post?.isRejected) {
-      toast.dismiss();
-
-      toastId.current = toast.error(liker.post?.errorMessage, toastOptions);
-    }
-
-    if (liker.post?.isFulfilled) {
-      toast.dismiss();
-
-      toastId.current = toast.success("You like this recipe", toastOptions);
-    }
-
-    if (errors.recipe_id) {
-      toast.dismiss(toastId.current);
-
-      toast.error(`Error: ${errors.recipe_id?.message}`, toastOptions);
-    }
-  }, [liker, errors]);
   return (
     <>
       <Helmet>
@@ -82,9 +37,14 @@ function Detail() {
       <NavbarAfterLogin />
       <div className="small-middle-container">
         <div className="content my-3">
-          <h1 className="text-center">Loream Sandwich</h1>
+          <h1 className="text-center">{recipes.title}</h1>
           <div class="gallerypic">
-            <img src={pic} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
+            <img src={recipes.thumbnail} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
+            <span class="bookmark">
+              <a href="#">
+                <img src={Like} alt="bookmark" className="icon" />
+              </a>
+            </span>
             <span class="like">
               {/* <form onSubmit={handleSubmit(onSubmit)}> */}
               <div onClick={handleSubmit(onSubmit)}>
@@ -102,38 +62,15 @@ function Detail() {
         </div>
         <div className="my-4">
           <h3>Ingredients</h3>
-          <ul>
-            <li>2 Eggs</li>
-            <li>2 Tbsp</li>
-            <li>3 Slices Bread</li>
-            <li>A Little Butter</li>
-            <li>1/3 Carton Of Cress</li>
-            <li>2-3 Slices Of Tomato Or A Lettuce Leaf And A Slice Of Ham Or Cheese</li>
-            <li>Crisps, To Serve</li>
-          </ul>
+          {recipes.ingredient}
         </div>
         <div className="my-4">
           <h3>Video Step</h3>
-          <div>
+          <a href="/DetailVideoRecipe">
             <button className="btn btn-warning mb-3">
               <img src={play} />
             </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
-          <div>
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </div>
+          </a>
         </div>
         <div>
           <label for="exampleFormControlTextarea1" class="form-label">

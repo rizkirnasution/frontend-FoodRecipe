@@ -1,4 +1,7 @@
+// import { useSelector } from "react-redux";
+// import RequireAuth from "../../components/base/RequireAuth";
 import React, { Fragment } from "react";
+// import Swal from "sweetalert2";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../../pages/Home";
 import Profile from "../../pages/Profile";
@@ -13,61 +16,71 @@ import NotFound from "../../pages/NotFound";
 import { PublicRoutes } from '../../router/publicRoutes'
 import { PrivateRoutes } from "../../router/privateRoutes";
 
+// const Role = ({ children }) => {
+//   const { user } = useSelector((state) => state.auth);
+
+//   if (user.role !== "seller") {
+//     Swal.fire("Are you a Seller?", "Please be a Seller first!", "question");
+//     return <Navigate to="/home" replace />;
+//   }
+//   return children;
+// };
+
+// const authPath = ['/auth', '/auth/login', '/auth/signup', '/auth/forgot-password']
 const Router = () => {
   return (
 
     <Routes>
 
       <Route path="/" element={
-          <PublicRoutes>
+         
             <Navigate to="/home" replace="true" />
-          </PublicRoutes>
+        
       } />
       <Route path="/home" element={
-          <PublicRoutes>
+          
             <Home />
-          </PublicRoutes>
+        
         }/>
       <Route path="/login" element={
-            <PublicRoutes>
+           
               <Login />
-            </PublicRoutes>
+       
       } />
       <Route path="/search" element={
-          <PublicRoutes>
+       
             <Searching />
-          </PublicRoutes>
+        
       } />
       <Route path="/signup" element={
-            <PublicRoutes>
+           
               <Signup />
-            </PublicRoutes>
+           
       } />
       <Route path="/forgot-password" element={
-          <PublicRoutes>
+         
             <ForgotPassword />  
-          </PublicRoutes>
+         
       } />
 
       <Route path="/profile" element={
-          <PrivateRoutes>
+       
             <Profile />
-          </PrivateRoutes>
+         
       } />
       <Route path="/detailVideoRecipe" element={
-          <PublicRoutes>
             <DetailVideoRecipe />
-          </PublicRoutes>
+         
       } />
-      <Route path="/detailRecipe" element={
-          <PublicRoutes>
+      <Route path="/detailRecipe/:id" element={
+         
             <DetailRecipe />  
-          </PublicRoutes>
+      
       } />
       <Route path="/addRecipe" element={
-        <PrivateRoutes>
+        
           <AddRecipe />
-        </PrivateRoutes>
+      
       } />
       <Route
         path="*"
