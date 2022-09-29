@@ -1,61 +1,65 @@
-import React, { useEffect, useState } from "react";
-import pic from "../assets/detailRecipe/photo.svg";
+import React, { useEffect, useRef, useState } from "react";
 import play from "../assets/detailRecipe/play.svg";
 import "../components/module/detailrecipe/detailrecipe.css";
 import comment from "../assets/detailRecipe/comment.png";
-import Navbar from "../components/base/navbar/NavbarProfileTop";
 import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLogin";
 import Footer from "../components/module/footer/Footer";
 import Like from "../assets/detailRecipe/ic-likes.svg";
 import Bookmark from "../assets/detailRecipe/ic-bookmark.svg";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { getRecipeByIdActionCreator } from "../redux/action/creator/recipe";
 
 function Detail() {
-  const [recipes, setRecipes] = useState([]);
-  const { id } = useParams()
+  const { REACT_APP_NAME } = process.env;
+  const { id } = useParams();
   const dispatch = useDispatch();
+  const recipe = useSelector((state) => state.recipe.getById, shallowEqual);
+  const [detailRecipe, setDetailRecipe] = useState({});
+  const isMounted = useRef();
 
-  const fetch  = async() =>{
-    const response = await axios.get(`http://localhost:8080/api/v1/recipe/${id}`)
-    .catch(err => console.log(err))
-
-    dispatch(setRecipes(response.data.data))
-    console.log(response.data.data)
-    // return 
-}
-
-
-console.log(recipes)
-useEffect(() =>{
-    fetch()
-}, [])
-
+  useEffect(() => {
+    if (!isMounted.current) {
+      dispatch(getRecipeByIdActionCreator(id));
+      isMounted.current = true;
+    } else {
+      setDetailRecipe(recipe?.response);
+    }
+  }, [recipe]);
 
   return (
     <>
+      <Helmet>
+        <title>{REACT_APP_NAME} - Detail Recipe</title>
+      </Helmet>
       <NavbarAfterLogin />
       <div className="small-middle-container">
         <div className="content my-3">
-          <h1 className="text-center">{recipes.title}</h1>
+          <h1 className="text-center">{detailRecipe?.title}</h1>
           <div class="gallerypic">
-            <img src={recipes.thumbnail} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
-            <span class="bookmark">
-              <a href="#">
-                <img src={Like} alt="bookmark" className="icon" />
-              </a>
-            </span>
+            <img src={detailRecipe?.thumbnail} height="450" width="600" alt={detailRecipe?.title} className="pic img-fluid" />
             <span class="like">
-              <a href="#">
-                <img src={Bookmark} alt="like" className="icon" />
-              </a>
+              <div>
+                <img src={Like} alt="like" className="icon" />
+              </div>
+            </span>
+            <span class="bookmark">
+              <div>
+                <img src={Bookmark} alt="bookmark" className="icon" />
+              </div>
             </span>
           </div>
         </div>
         <div className="my-4">
           <h3>Ingredients</h3>
-          {recipes.ingredient}
+          {detailRecipe?.ingredient}
+
+          {/* <ul>
+            {splitIngredient.map((item) => (
+              <li className="list">{item}</li>
+            ))}
+          </ul> */}
         </div>
         <div className="my-4">
           <h3>Video Step</h3>

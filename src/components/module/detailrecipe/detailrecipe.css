@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Airbnb";
-  src: url("../../../assets/detailRecipe/AirbnbCereal_W_Bd.otf");
+  src: url("../../../../src/assets/detailRecipe/airbnb.woff2");
   font-display: swap;
 }
 
@@ -34,13 +34,13 @@ div.gallerypic {
   /* float: left; */
 }
 
-div.gallerypic span.bookmark {
+div.gallerypic span.like {
   position: absolute;
   left: 90%;
   top: 84%;
 }
 
-div.gallerypic span.like {
+div.gallerypic span.bookmark {
   position: absolute;
   left: 82%;
   top: 84%;
@@ -51,12 +51,12 @@ div.gallerypic span.like {
 }
 
 @media (min-width: 1px) and (max-width: 350px) {
-  div.gallerypic span.bookmark {
+  div.gallerypic span.like {
     left: 84%;
     top: 73%;
   }
 
-  div.gallerypic span.like {
+  div.gallerypic span.bookmark {
     left: 69%;
     top: 73%;
   }
@@ -67,12 +67,12 @@ div.gallerypic span.like {
   }
 }
 @media (min-width: 351px) and (max-width: 500px) {
-  div.gallerypic span.bookmark {
+  div.gallerypic span.like {
     left: 87%;
     top: 80%;
   }
 
-  div.gallerypic span.like {
+  div.gallerypic span.bookmark {
     left: 74%;
     top: 80%;
   }
@@ -83,12 +83,12 @@ div.gallerypic span.like {
   }
 }
 @media (min-width: 501px) and (max-width: 750px) {
-  div.gallerypic span.bookmark {
+  div.gallerypic span.like {
     left: 88%;
     top: 82%;
   }
 
-  div.gallerypic span.like {
+  div.gallerypic span.bookmark {
     left: 77%;
     top: 82%;
   }
@@ -97,4 +97,14 @@ div.gallerypic span.like {
     width: 32px;
     height: 32px;
   }
+}
+.icon:hover {
+  cursor: pointer;
+}
+
+li.list {
+  list-style-type: circle;
+  font-family: "Airbnb";
+  font-weight: 100;
+  font-size: 16px;
 }
