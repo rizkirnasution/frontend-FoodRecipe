@@ -10,8 +10,10 @@ import Bookmark from "../assets/detailRecipe/ic-bookmark.svg";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function Detail() {
+  const { REACT_APP_NAME } = process.env;
   const [recipes, setRecipes] = useState([]);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -21,14 +23,14 @@ function Detail() {
 
     dispatch(setRecipes(response.data.data));
     console.log(response.data.data);
-    // return
   };
 
-  console.log(recipes);
   useEffect(() => {
     fetch();
   }, []);
 
+  const splitIngredient = recipes.ingredient.split("\n");
+  console.log(splitIngredient);
   return (
     <>
       <Helmet>
@@ -40,29 +42,25 @@ function Detail() {
           <h1 className="text-center">{recipes.title}</h1>
           <div class="gallerypic">
             <img src={recipes.thumbnail} height="450" width="600" alt="[Gallery Photo]" className="pic img-fluid" />
-            <span class="bookmark">
-              <a href="#">
-                <img src={Like} alt="bookmark" className="icon" />
-              </a>
-            </span>
             <span class="like">
-              {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-              <div onClick={handleSubmit(onSubmit)}>
-                <img src={Like} alt="like" className="icon" {...register("recipe_id")} />
+              <div>
+                <img src={Like} alt="like" className="icon" />
               </div>
-              {/* <input type="submit" className="invisible" {...register("recipe_id")} /> */}
-              {/* </form> */}
             </span>
             <span class="bookmark">
-              <div onClick={handleSubmit(onSubmit)}>
-                <img src={Bookmark} alt="bookmark" className="icon" {...register("recipe_id")} />
+              <div>
+                <img src={Bookmark} alt="bookmark" className="icon" />
               </div>
             </span>
           </div>
         </div>
         <div className="my-4">
           <h3>Ingredients</h3>
-          {recipes.ingredient}
+          <ul>
+            {splitIngredient.map((item) => (
+              <li className="list">{item}</li>
+            ))}
+          </ul>
         </div>
         <div className="my-4">
           <h3>Video Step</h3>
