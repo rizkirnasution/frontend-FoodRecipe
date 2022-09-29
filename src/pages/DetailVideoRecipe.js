@@ -20,18 +20,24 @@ function DetailVideoRecipe() {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mt-5 ">
-              <h5 className="mb-2">Judul Video</h5>
+              <h5 className="mb-2">Bakso Daging 100% Rumahan</h5>
               {/* {video && ( */}
-              <video
-                // autoPlay
+              {/* <video
+                autoPlay
                 width="700"
                 className={`${styles.videos} mt-2`}
                 controls
               >
-                <source src={VideoUtama} />
-              </video>
+                <source src="https://www.youtube.com/watch?v=QOBD3ARmo1U" />
+              </video> */}
+              <iframe 
+              width="700" 
+              height="500"
+              className={`${styles.videos} mt-2`}
+                  src="https://www.youtube.com/embed/gqcRtvIFArA?autoplay=1&mute=1">
+                  </iframe>
               {/* )} */}
-              <h3 className={`${styles.titleVideo} mt-3 `}>Beef Steak with Curry Sauce - [Step 4] Cut the condiment and then mix it</h3>
+              {/* <h3 className={`${styles.titleVideo} mt-3 `}>Beef Steak with Curry Sauce - [Step 4] Cut the condiment and then mix it</h3> */}
               <p className="text-secondary mt-2">{/* {moment(create).format("LLLL")} */}</p>
             </div>
             <div className={`${styles.sugestion} col-lg-3 mb-5 mt-5`}>
