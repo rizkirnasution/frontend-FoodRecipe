@@ -1,75 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { getRecipeByIdActionCreator, putRecipeActionCreator } from '../../../redux/action/creator/recipe';
+import { useDidUpdate } from '../../../custom-hooks/common';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import "./updaterecipemodal.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { recipeModel } from "../../../utils/schema";
+import { createFormData } from "../../../utils/form-data";
 
-function ModalEdit({ id, title, ingredient, category }) {
+function ModalEdit({ recipeId }) {
+  const getRecipeById = useSelector(state => state.recipe.getById, shallowEqual)
+
+  const putRecipe = useSelector(state => state.recipe.put, shallowEqual)
+  const dispatch = useDispatch()
+
+  const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(recipeModel)
+  });
+
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState([]);
+  const [previewImage, setPreviewImage] = useState('');
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [data, setData] = useState({
-    id,
-    title,
-    ingredient,
-    category,
-  });
+  const onImageChange = (event)=>{
+    if (event.target.files && event.target.files[0]) {
+      const img = event.target.files[0];
+      setPreviewImage(URL.createObjectURL(img));
+      setImage(img);
+    }
+  }
 
-  const [thumbnail, setThumbnail] = useState(null);
+  const onVideChange = (event)=>{
+    
+    const vd = event.target.files;
+    setVideo(vd);
+  
+  }
+  const onRecipeSave = values => {
+    const data = {}
+        const file = {}
+        // const fileVideo = {}
 
-  const handleUploadThumbnail = (e) => {
-    setThumbnail(e.target.files[0]);
+        data.title = values?.title
+        data.category = values?.category
+        data.ingredient = values?.ingredient
+        file.single = image
+        // file.multiple = video
+
+        dispatch(putRecipeActionCreator({
+          id : getRecipeById.response?.id,
+          value : createFormData(file, data)
+
+        }))
+        console.log(createFormData(file, data));
   };
 
-  const [video, setVideo] = useState(null);
+  useEffect(() =>{
+    dispatch(getRecipeByIdActionCreator(recipeId))
+  }, [recipeId])
 
-  const handleUploadVideo = (e) => {
-    setVideo(e.target.files[0]);
-  };
+  useDidUpdate(() =>{
+   
+    if(putRecipe?.isFulfilled){
+      dispatch(getRecipeByIdActionCreator(recipeId))
+    }
 
-  console.log(data);
+  }, [putRecipe])
 
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-    console.log(data);
-  };
-
-  const handleCreate = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("ingredient", data.ingredient);
-    formData.append("category", data.category);
-    formData.append("thumbnail", thumbnail);
-    formData.append("video", video);
-    axios
-      .put(
-        `https://food-recipe-production.up.railway.app/api/v1/recipe/${id}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        Swal.fire("Updated!", "Product Update Succes!", "success");
-        setShow(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire("Failed!", "Product Update Failed!", "error");
-        setShow(false);
-      });
-  };
-
+  
   return (
     <>
       <button
@@ -83,49 +89,45 @@ function ModalEdit({ id, title, ingredient, category }) {
         <Modal.Header className="bg-warning text-white" closeButton>
           <Modal.Title>Edit Recipe</Modal.Title>
         </Modal.Header>
-        <form onSubmit={handleCreate}>
+        <form onSubmit={handleSubmit(onRecipeSave)}>
           <Modal.Body>
-            <input
+            <input {...register("title")}
               className="form-control mt-3"
               type="text"
               placeholder="Recipe Name"
-              name="title"
-              value={data.title}
-              onChange={handleChange}
+              defaultValue={getRecipeById.response?.title}
             />
-            <input
+            <input {...register("category")}
               className="form-control mt-3"
               type="text"
               placeholder="Category"
-              name="category"
-              value={data.category}
-              onChange={handleChange}
+              defaultValue={getRecipeById.response?.category}
             />
-
-            <input
+            
+            <input 
               className="form-control mt-3"
               type="file"
               placeholder="photo"
-              name="photo"
-              onChange={handleUploadThumbnail}
+              onChange={onImageChange}
             />
 
-            <input
+            {/* <input
               className="form-control mt-3"
               type="file"
               placeholder="video"
-              name="video"
-              onChange={handleUploadVideo}
-            />
-            <textarea
+              multiple={true}
+              onChange={onVideChange}
+            /> */}
+
+            <textarea {...register("ingredient")}
               rows="4"
               cols="50"
               className="form-control mt-3"
               type="text"
               placeholder="Ingredients"
-              name="ingredient"
-              value={data.ingredient}
-              onChange={handleChange}
+              
+              defaultValue={getRecipeById.response?.ingredient}
+      
             />
           </Modal.Body>
           <Modal.Footer>
@@ -139,7 +141,7 @@ function ModalEdit({ id, title, ingredient, category }) {
               type="submit"
               className="btn btn-warning text-white button-add"
             >
-              Create
+              Update
             </button>
           </Modal.Footer>
         </form>

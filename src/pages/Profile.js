@@ -9,102 +9,81 @@ import { Button, Modal, Form, Container } from "react-bootstrap";
 import FooterAfter from "../components/module/footer/FooterAfter";
 import ProfileNavbar from "../components/module/profilenavbar/index";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDidUpdate } from '../custom-hooks/common';
+import { deleteRecipeActionCreator, getRecipeByUserIdActionCreator } from '../redux/action/creator/recipe';
+import { getProfileActionCreator, putProfileActionCreator } from '../redux/action/creator/profile';
 import ProfileNavbarTop from "../components/base/navbar/NavbarProfileTop";
 import ModalCreate from "../components/module/crudprofile/CreateRecipeModal";
 import NavbarAfterLogin from "../components/base/navbarafterlogin/NavbarAfterLogin";
 import ModalUpdate from "../components/module/crudprofile/UpdateRecipeModal";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { profileModel } from "../utils/schema";
+import { createFormData } from "../utils/form-data";
+
 
 const Profile = () => {
+  const getProfile = useSelector(state => state.profile.get, shallowEqual)
+  const putProfile = useSelector(state => state.profile.put, shallowEqual)
+  
+ 
+  const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(profileModel)
+  });
+  
+  const dispatch = useDispatch()
+  const getRecipeByUser = useSelector(state => state.recipe.getByUserId, shallowEqual)
+  const postRecipe = useSelector(state => state.recipe.post, shallowEqual)
+  const putRecipe = useSelector(state => state.recipe.put, shallowEqual)
+  const deleteRecipe = useSelector(state => state.recipe.delete, shallowEqual)
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [recipes, setRecipes] = useState([]);
-  // const [getDetailProfile, setGetDetailProfile] = useState([]);
-  const dispatch = useDispatch();
+  const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
 
-  //update profile
-  const { user } = useSelector((state) => state.auth);
-  useEffect(() => {
-    datas();
-  }, []);
+  const onProfileSave = values => {
+    const data = {}
+        const fileImage = {}
 
-  const datas = async (id) => {
-    const token = localStorage.getItem("token");
-    const response = await axios.put(
-      `https://food-recipe-production.up.railway.app/api/v1/profile/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(response.data.data.name);
-  };
-  console.log(user);
+        data.name = values?.name
+        fileImage.single = image
 
-  //recipes
-  const fetch = async () => {
-    const response = await axios
-      .get(`https://food-recipe-production.up.railway.app/api/v1/recipe`)
-      .catch((err) => console.log(err));
-
-    dispatch(setRecipes(response.data.data));
-    console.log(response.data);
-    // return
+        dispatch(putProfileActionCreator({
+          id : getProfile.response?.id,
+          value : createFormData(fileImage, data)
+        }))
   };
 
-  console.log(recipes);
-  useEffect(() => {
-    fetch();
-  }, []);
+  const onImageChange = (event)=>{
+    if (event.target.files && event.target.files[0]) {
+      const img = event.target.files[0];
+      setPreviewImage(URL.createObjectURL(img));
+      setImage(img);
+    }
+  }
 
-  // const getProfile = async () => {
-  //   const token = localStorage.getItem("token");
-  //   const response = await axios.get(`http://localhost:8080/api/v1/profile`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  //   dispatch(setGetDetailProfile(response.data.data.name));
-  //   console.log(response.data.data.name);
-  // };
+  useEffect(() =>{
+    dispatch(getProfileActionCreator())
+  }, [])
 
-  // // const { fetchProfile } = useSelector((state) => state.auth);
-  // useEffect(() => {
-  //   getProfile();
-  // }, []);
-  // console.log(user);
+  useDidUpdate(() =>{
+    if(putProfile?.isFulfilled){
+      dispatch(getProfileActionCreator())
 
-  const deleteProduct = async (id) => {
-    Swal.fire({
-      title: "Sure to Delete This Product?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#ffc107",
-      confirmButtonText: "Yes",
-      cancelButtonColor: "#6c757d",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        await axios
-          .delete(
-            `https://food-recipe-production.up.railway.app/api/v1/recipe/${id}`
-          )
-          .then((res) => {
-            fetch();
-            // dispatch(deleteProduct(res));
-            // navigate('/product')
-            Swal.fire("Deleted!", "Product Delete Success!", "success");
-            // console.log(res);
-            setShow(false);
-          })
-          .catch((err) => {
-            Swal.fire("Failed!", "Product Delete Failed!", "error");
-            setShow(false);
-          });
-      }
-    });
+    }
+    if(getProfile?.isFulfilled || postRecipe?.isFulfilled || putRecipe?.isFulfilled || deleteRecipe?.isFulfilled){
+      dispatch(getRecipeByUserIdActionCreator(getProfile.response?.id))
+    }
+
+  }, [putProfile, getProfile, postRecipe, putRecipe, deleteRecipe])
+
+  console.log(previewImage)
+
+  const onDeleteRecipe = (id) => {
+   dispatch(deleteRecipeActionCreator(id))
   };
   return (
     <>
@@ -117,7 +96,7 @@ const Profile = () => {
             <div className="position-relative">
               <img
                 className="picture rounded-circle"
-                src={profile}
+                src={getProfile.response?.picture || `https://ui-avatars.com/api/?name=${getProfile.response?.name}`}
                 alt="Profile"
               />
               <img
@@ -132,11 +111,11 @@ const Profile = () => {
               </Button> */}
             </div>
           </div>
-          <p className="fs-5 mt-3">Rizki Nasution</p>
+          <p className="fs-5 mt-3">{getProfile.response?.name}</p>
         </section>
 
         <div className="table-responsive mx-5 mb-5">
-          <ModalCreate />
+          <ModalCreate userId={getProfile.response?.id}/>
           <table className="table align-middle text-center mb-5">
             <thead className="bg-warning text-white ">
               <tr>
@@ -148,7 +127,7 @@ const Profile = () => {
               </tr>
             </thead>
             <tbody className="">
-              {recipes.map((item, index) => (
+              {getRecipeByUser.response?.map((item, index) => (
                 <tr key={item.id}>
                   <td>{index + 1}</td>
                   <td>{item.title}</td>
@@ -164,9 +143,9 @@ const Profile = () => {
                     />
                   </td>
                   <td>
-                    <ModalUpdate />
+                    <ModalUpdate recipeId={item.id}/>
                     <button
-                      onClick={() => deleteProduct(item.id)}
+                      onClick={() => onDeleteRecipe(item.id)}
                       className="btn btn-danger mx-1"
                     >
                       Delete
@@ -182,19 +161,18 @@ const Profile = () => {
           <ProfileNavbar />
         </div>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title className="bg-warning text-white">
+          <Modal.Header closeButton className="bg-warning">
+            <Modal.Title className="text-white">
               Edit Account
             </Modal.Title>
           </Modal.Header>
-          <form>
+         <form onSubmit={handleSubmit(onProfileSave)}>
             <Modal.Body>
-              <input
+              <input {...register("name")}
                 className="form-control mt-3"
                 type="text"
                 placeholder="Name"
-                name="name"
-                // value={data.name}
+                defaultValue={getProfile.response?.name}
                 // onChange={handleChange}
               />
 
@@ -202,8 +180,7 @@ const Profile = () => {
                 className="form-control mt-3"
                 type="file"
                 placeholder="photo"
-                name="photo"
-                // onChange={handleUpload}
+                onChange={onImageChange}
               />
             </Modal.Body>
             <Modal.Footer>

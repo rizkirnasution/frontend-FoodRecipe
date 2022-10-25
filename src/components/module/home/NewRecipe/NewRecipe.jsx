@@ -1,9 +1,6 @@
 import React from 'react'
 import burger1 from "../../../../assets/home/burger1.svg";
 
-
-
-
 function NewRecipe() {
   return (
     <div className="container ">
@@ -12,7 +9,7 @@ function NewRecipe() {
         </div>
         <div className="row mt-5 new-recipe">
             <div className="col-sm-8 img-recipe mt-5">
-                <img src={burger1} alt="" />
+                <img src={burger1} alt=""/>
             </div>
             <div className="col-sm-4 align-self-center text-recipe ">
                 <h1>Healthy Bone Broth Ramen (Quick & Easy)</h1>

@@ -16,15 +16,25 @@ import { toast } from "react-toastify";
 
 
 const Home = () => {
-    const logout = useSelector(state => state.auth.logout, shallowEqual)
-    const login = useSelector((state) => state.auth.login);
+    // const logout = useSelector(state => state.auth.logout, shallowEqual)
+    // const login = useSelector((state) => state.auth.login);
     const token = localStorage.getItem("@acc_token")
     const [recipes, setRecipes] = useState([])
+    const [popular, setPopular] = useState([])
     const dispatch = useDispatch()
     const getAll = useSelector(state => state.recipe.get, shallowEqual)
-    console.log(logout)
-    console.log(login)
+    console.log(popular)
     useEffect(() =>{
+        if(popular === false){
+            dispatch(getRecipeActionCreator({
+                limit: 10
+            }))
+        }else{
+            dispatch(getRecipeActionCreator({
+                limit: 2
+            }))
+            
+        }
         dispatch(getRecipeActionCreator({
             limit: 10
         }))
@@ -33,23 +43,9 @@ const Home = () => {
     const toastId = React.useRef(null);
     useDidUpdate(() =>{
 
-        //   const toastOptions = {
-        //     position: "bottom-center",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //   };
-        //   if(logout?.isFulfilled){
-        //     toast.dismiss();
-        
-        //     toast.success("Logout Success", toastOptions);
-        //   }
         if(getAll?.isFulfilled){
             setRecipes(getAll?.response)
-
+            setPopular(getAll?.response)
         }
         
     }, [getAll])
@@ -62,16 +58,16 @@ const Home = () => {
             <NavbarAfterLogin/> 
         }
             <Baner />
-            <Popular />
+            <Popular src={popular.thumbnail}/>
             <NewRecipe />    
                 <div className="container popular-recipe ">
                     <div className="col-sm-3 popular ">
                         <p>Popular Recipe</p>
                     </div>
-                    <div className="row mt-5">
-                        <div className='row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 m-5'>
+                    <div className="row ">
+                        <div className='row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4 ms-0 pb-5 g-2 gb-5 popular-custom'>
                             {recipes.map((item) =>(
-                            <div className="m-4 col" key={item.id}>
+                            <div className="mb-0 col" key={item.id}>
                                 <Card 
                                 src={item.thumbnail}
                                 to={`/detailRecipe/${item.id}`}

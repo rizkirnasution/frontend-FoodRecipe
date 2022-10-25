@@ -1,71 +1,61 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { postRecipeActionCreator } from '../../../redux/action/creator/recipe';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import "./createrecipemodal.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { recipeModel } from "../../../utils/schema";
+import { createFormData } from "../../../utils/form-data";
 
-function ModalCreate() {
+function ModalCreate({userId}) {
+
+  const postRecipe = useSelector(state => state.recipe.post, shallowEqual)
+
+  const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(recipeModel)
+  });
+  
+  const dispatch = useDispatch()
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [data, setData] = useState({
-    title: "",
-    ingredient: "",
-    category: "",
-  });
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState([]);
+  const [previewImage, setPreviewImage] = useState('');
 
-  const [thumbnail, setThumbnail] = useState(null);
+  const onImageChange = (event)=>{
+    if (event.target.files && event.target.files[0]) {
+      const img = event.target.files[0];
+      setPreviewImage(URL.createObjectURL(img));
+      setImage(img);
+    }
+  }
 
-  const handleUploadThumbnail = (e) => {
-    setThumbnail(e.target.files[0]);
-  };
+  const onVideChange = (event)=>{
+    
+    const vd = event.target.files;
+    setVideo(vd);
+  
+  }
+  const onRecipeSave = values => {
+    const data = {}
+        const file = {}
 
-  const [video_thumbnail, setVideoThumbnail] = useState(null);
+        data.creator_id = userId
+        data.title = values?.title
+        data.category = values?.category
+        data.ingredient = values?.ingredient
+        file.single = image
+        file.multiple = video
 
-  const handleUploadVideo = (e) => {
-    setVideoThumbnail(e.target.files[0]);
-  };
-
-  const handleChange = (e) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
-    console.log(data);
-  };
-
-  const handleCreate = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("ingredient", data.ingredient);
-    formData.append("category", data.category);
-    formData.append("thumbnail", thumbnail);
-    formData.append("video_thumbnail", video_thumbnail);
-
-    axios
-      .post(
-        "https://food-recipe-production.up.railway.app/api/v1/recipe",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        Swal.fire("Created!", "Product Created Success!", "success");
-        setShow(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        Swal.fire("Failed!", "Product Create Failed!", "error");
-        setShow(false);
-      });
+        dispatch(postRecipeActionCreator(createFormData(file, data)))
+        console.log(createFormData(file, data));
   };
 
   return (
@@ -78,51 +68,45 @@ function ModalCreate() {
       </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="bg-warning text-white" closeButton>
-          <Modal.Title>Create Product</Modal.Title>
+          <Modal.Title>Create Recipe</Modal.Title>
         </Modal.Header>
-        <form onSubmit={handleCreate}>
+        <form onSubmit={handleSubmit(onRecipeSave)}>
           <Modal.Body>
-            <input
+            <input {...register("title")}
               className="form-control mt-3"
               type="text"
               placeholder="Recipe Name"
-              name="title"
-              value={data.title}
-              onChange={handleChange}
+        
             />
-            <input
+            <input {...register("category")}
               className="form-control mt-3"
               type="text"
               placeholder="Category"
-              name="category"
-              value={data.category}
-              onChange={handleChange}
+              
             />
 
-            <input
+              <input 
               className="form-control mt-3"
               type="file"
               placeholder="photo"
-              name="photo"
-              onChange={handleUploadThumbnail}
+              onChange={onImageChange}
             />
 
             <input
               className="form-control mt-3"
               type="file"
-              placeholder="video thumbnail"
-              name="video_thumbnail"
-              onChange={handleUploadVideo}
+              placeholder="video"
+              multiple={true}
+              onChange={onVideChange}
             />
-            <textarea
+            
+            <textarea {...register("ingredient")}
               rows="4"
               cols="50"
               className="form-control mt-3"
               type="text"
               placeholder="Ingredients"
-              name="ingredient"
-              value={data.ingredient}
-              onChange={handleChange}
+            
             />
           </Modal.Body>
           <Modal.Footer>
