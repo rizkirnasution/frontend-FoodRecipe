@@ -7,11 +7,12 @@ import Footer from "../components/module/footer/Footer";
 import Like from "../assets/detailRecipe/ic-likes.svg";
 import Bookmark from "../assets/detailRecipe/ic-bookmark.svg";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { getRecipeByIdActionCreator } from "../redux/action/creator/recipe";
 
 function Detail() {
+  const navigate = useNavigate();
   const { REACT_APP_NAME } = process.env;
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -27,6 +28,11 @@ function Detail() {
       setDetailRecipe(recipe?.response);
     }
   }, [recipe]);
+
+  // const splitIngredient = detailRecipe?.ingredient.split("\n");
+  // console.log(splitIngredient);
+  console.log(detailRecipe?.ingredient);
+  console.log(detailRecipe);
 
   return (
     <>
@@ -62,12 +68,10 @@ function Detail() {
           </ul> */}
         </div>
         <div className="my-4">
-          <h3>Video Step</h3>
-          <a href="/DetailVideoRecipe">
-            <button className="btn btn-warning mb-3">
-              <img src={play} />
-            </button>
-          </a>
+        <h3>Video Step</h3>
+          <button className="btn btn-warning mb-3" onClick={() => navigate(`/DetailVideoRecipe/${detailRecipe?.id}`)}>
+            <img src={play} />
+          </button>
         </div>
         <div>
           <label for="exampleFormControlTextarea1" class="form-label">
