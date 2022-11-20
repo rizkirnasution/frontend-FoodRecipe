@@ -68,7 +68,7 @@ const Router = () => {
             <Profile />
          
       } />
-      <Route path="/detailVideoRecipe" element={
+      <Route path="/detailVideoRecipe/:recipeid" element={
             <DetailVideoRecipe />
          
       } />
